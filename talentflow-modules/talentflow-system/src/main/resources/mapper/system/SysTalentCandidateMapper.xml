@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysTalentCandidateMapper">
+
+    <resultMap type="SysTalentCandidate" id="SysTalentCandidateResult">
+        <result property="id" column="id"/>
+        <result property="name" column="name"/>
+        <result property="phoneNumber" column="phone_number"/>
+        <result property="email" column="email"/>
+        <result property="highestEdu" column="highest_edu"/>
+        <result property="expectedSalary" column="expected_salary"/>
+        <result property="industry" column="industry"/>
+        <result property="skillTags" column="skill_tags"/>
+        <result property="resumeUrl" column="resume_url"/>
+        <result property="deptId" column="dept_id"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectSysTalentCandidateVo">
+        select id, name, phone_number, email, highest_edu, expected_salary, industry, skill_tags, resume_url, dept_id,
+        create_by, create_time, update_by, update_time, remark from sys_talent_candidate
+    </sql>
+
+    <select id="selectSysTalentCandidateList" parameterType="SysTalentCandidate" resultMap="SysTalentCandidateResult">
+        <include refid="selectSysTalentCandidateVo"/>
+        <where>
+            <if test="name != null  and name != ''">and name like concat('%', #{name}, '%')</if>
+            <if test="phoneNumber != null  and phoneNumber != ''">and phone_number = #{phoneNumber}</if>
+            <if test="email != null  and email != ''">and email = #{email}</if>
+            <if test="highestEdu != null ">and highest_edu = #{highestEdu}</if>
+            <if test="expectedSalary != null ">and expected_salary = #{expectedSalary}</if>
+            <if test="industry != null  and industry != ''">and industry = #{industry}</if>
+            <if test="skillTags != null  and skillTags != ''">and skill_tags = #{skillTags}</if>
+            <if test="resumeUrl != null  and resumeUrl != ''">and resume_url = #{resumeUrl}</if>
+        </where>
+    </select>
+
+    <select id="selectSysTalentCandidateById" parameterType="Long" resultMap="SysTalentCandidateResult">
+        <include refid="selectSysTalentCandidateVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSysTalentCandidate" parameterType="SysTalentCandidate" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_talent_candidate
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">name,</if>
+            <if test="phoneNumber != null and phoneNumber != ''">phone_number,</if>
+            <if test="email != null">email,</if>
+            <if test="highestEdu != null">highest_edu,</if>
+            <if test="expectedSalary != null">expected_salary,</if>
+            <if test="industry != null">industry,</if>
+            <if test="skillTags != null">skill_tags,</if>
+            <if test="resumeUrl != null">resume_url,</if>
+            <if test="deptId != null">dept_id,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="name != null and name != ''">#{name},</if>
+            <if test="phoneNumber != null and phoneNumber != ''">#{phoneNumber},</if>
+            <if test="email != null">#{email},</if>
+            <if test="highestEdu != null">#{highestEdu},</if>
+            <if test="expectedSalary != null">#{expectedSalary},</if>
+            <if test="industry != null">#{industry},</if>
+            <if test="skillTags != null">#{skillTags},</if>
+            <if test="resumeUrl != null">#{resumeUrl},</if>
+            <if test="deptId != null">#{deptId},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysTalentCandidate" parameterType="SysTalentCandidate">
+        update sys_talent_candidate
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="name != null and name != ''">name = #{name},</if>
+            <if test="phoneNumber != null and phoneNumber != ''">phone_number = #{phoneNumber},</if>
+            <if test="email != null">email = #{email},</if>
+            <if test="highestEdu != null">highest_edu = #{highestEdu},</if>
+            <if test="expectedSalary != null">expected_salary = #{expectedSalary},</if>
+            <if test="industry != null">industry = #{industry},</if>
+            <if test="skillTags != null">skill_tags = #{skillTags},</if>
+            <if test="resumeUrl != null">resume_url = #{resumeUrl},</if>
+            <if test="deptId != null">dept_id = #{deptId},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysTalentCandidateById" parameterType="Long">
+        delete from sys_talent_candidate where id = #{id}
+    </delete>
+
+    <delete id="deleteSysTalentCandidateByIds" parameterType="String">
+        delete from sys_talent_candidate where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

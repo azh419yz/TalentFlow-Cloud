@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.system.mapper.SysFileDetailMapper">
+
+    <resultMap type="SysFileDetail" id="SysFileDetailResult">
+        <result property="id" column="id"/>
+        <result property="url" column="url"/>
+        <result property="size" column="size"/>
+        <result property="filename" column="filename"/>
+        <result property="originalFilename" column="original_filename"/>
+        <result property="basePath" column="base_path"/>
+        <result property="path" column="path"/>
+        <result property="ext" column="ext"/>
+        <result property="contentType" column="content_type"/>
+        <result property="platform" column="platform"/>
+        <result property="thUrl" column="th_url"/>
+        <result property="thFilename" column="th_filename"/>
+        <result property="thSize" column="th_size"/>
+        <result property="thContentType" column="th_content_type"/>
+        <result property="objectId" column="object_id"/>
+        <result property="objectType" column="object_type"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectSysFileDetailVo">
+        select id, url, size, filename, original_filename, base_path, path, ext, content_type, platform, th_url,
+        th_filename, th_size, th_content_type, object_id, object_type, create_by, create_time, update_by, update_time,
+        remark from sys_file_detail
+    </sql>
+
+    <select id="selectSysFileDetailList" parameterType="SysFileDetail" resultMap="SysFileDetailResult">
+        <include refid="selectSysFileDetailVo"/>
+        <where>
+            <if test="id != null ">and id = #{id}</if>
+            <if test="filename != null  and filename != ''">and filename = #{filename}</if>
+        </where>
+    </select>
+
+    <select id="selectSysFileDetailById" parameterType="Long" resultMap="SysFileDetailResult">
+        <include refid="selectSysFileDetailVo"/>
+        where id = #{id}
+    </select>
+    <select id="selectSysFileDetailByUrl" parameterType="String" resultMap="SysFileDetailResult">
+        <include refid="selectSysFileDetailVo"/>
+        where url = #{url}
+    </select>
+
+    <insert id="insertSysFileDetail" parameterType="SysFileDetail" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_file_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="url != null and url != ''">url,</if>
+            <if test="size != null">size,</if>
+            <if test="filename != null and filename != ''">filename,</if>
+            <if test="originalFilename != null and originalFilename != ''">original_filename,</if>
+            <if test="basePath != null">base_path,</if>
+            <if test="path != null">path,</if>
+            <if test="ext != null">ext,</if>
+            <if test="contentType != null">content_type,</if>
+            <if test="platform != null">platform,</if>
+            <if test="thUrl != null">th_url,</if>
+            <if test="thFilename != null">th_filename,</if>
+            <if test="thSize != null">th_size,</if>
+            <if test="thContentType != null">th_content_type,</if>
+            <if test="objectId != null">object_id,</if>
+            <if test="objectType != null">object_type,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="url != null and url != ''">#{url},</if>
+            <if test="size != null">#{size},</if>
+            <if test="filename != null and filename != ''">#{filename},</if>
+            <if test="originalFilename != null and originalFilename != ''">#{originalFilename},</if>
+            <if test="basePath != null">#{basePath},</if>
+            <if test="path != null">#{path},</if>
+            <if test="ext != null">#{ext},</if>
+            <if test="contentType != null">#{contentType},</if>
+            <if test="platform != null">#{platform},</if>
+            <if test="thUrl != null">#{thUrl},</if>
+            <if test="thFilename != null">#{thFilename},</if>
+            <if test="thSize != null">#{thSize},</if>
+            <if test="thContentType != null">#{thContentType},</if>
+            <if test="objectId != null">#{objectId},</if>
+            <if test="objectType != null">#{objectType},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysFileDetail" parameterType="SysFileDetail">
+        update sys_file_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="url != null and url != ''">url = #{url},</if>
+            <if test="size != null">size = #{size},</if>
+            <if test="filename != null and filename != ''">filename = #{filename},</if>
+            <if test="originalFilename != null and originalFilename != ''">original_filename = #{originalFilename},</if>
+            <if test="basePath != null">base_path = #{basePath},</if>
+            <if test="path != null">path = #{path},</if>
+            <if test="ext != null">ext = #{ext},</if>
+            <if test="contentType != null">content_type = #{contentType},</if>
+            <if test="platform != null">platform = #{platform},</if>
+            <if test="thUrl != null">th_url = #{thUrl},</if>
+            <if test="thFilename != null">th_filename = #{thFilename},</if>
+            <if test="thSize != null">th_size = #{thSize},</if>
+            <if test="thContentType != null">th_content_type = #{thContentType},</if>
+            <if test="objectId != null">object_id = #{objectId},</if>
+            <if test="objectType != null">object_type = #{objectType},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysFileDetailById" parameterType="Long">
+        delete from sys_file_detail where id = #{id}
+    </delete>
+
+    <delete id="deleteSysFileDetailByIds" parameterType="String">
+        delete from sys_file_detail where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+    <delete id="deleteSysFileDetailByUrl" parameterType="String">
+        delete from sys_file_detail where url = #{url}
+    </delete>
+</mapper>

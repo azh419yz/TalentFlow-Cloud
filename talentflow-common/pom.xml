@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <groupId>com.ruoyi</groupId>
+        <artifactId>talentflow</artifactId>
+        <version>3.6.6</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <modules>
+        <module>talentflow-common-log</module>
+        <module>talentflow-common-core</module>
+        <module>talentflow-common-redis</module>
+        <module>talentflow-common-seata</module>
+        <module>talentflow-common-swagger</module>
+        <module>talentflow-common-security</module>
+        <module>talentflow-common-sensitive</module>
+        <module>talentflow-common-datascope</module>
+        <module>talentflow-common-datasource</module>
+    </modules>
+
+    <artifactId>talentflow-common</artifactId>
+    <packaging>pom</packaging>
+
+    <description>
+        talentflow-common通用模块
+    </description>
+
+</project>
