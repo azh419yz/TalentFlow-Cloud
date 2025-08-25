@@ -1,5 +1,7 @@
 package com.ruoyi.system.domain;
 
+import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.ruoyi.common.core.annotation.Excel;
 import com.ruoyi.common.core.web.domain.BaseEntity;
 import lombok.Getter;
@@ -24,12 +26,13 @@ public class SysTalentCandidate extends BaseEntity {
     /**
      * 人才id
      */
+    @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     /**
-     * $column.columnComment
+     * 候选人姓名
      */
-    @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
+    @Excel(name = "候选人姓名")
     private String name;
 
     /**
@@ -61,6 +64,12 @@ public class SysTalentCandidate extends BaseEntity {
      */
     @Excel(name = "行业")
     private String industry;
+
+    /**
+     * 职位
+     */
+    @Excel(name = "职位")
+    private String post;
 
     /**
      * 专业技能

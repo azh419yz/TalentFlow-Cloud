@@ -1,5 +1,7 @@
 package com.ruoyi.system.controller;
 
+import com.ruoyi.common.core.utils.StringUtils;
+import com.ruoyi.common.core.utils.bean.BeanUtils;
 import com.ruoyi.common.core.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
@@ -8,6 +10,8 @@ import com.ruoyi.common.log.annotation.Log;
 import com.ruoyi.common.log.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
 import com.ruoyi.system.domain.SysTalentCandidate;
+import com.ruoyi.system.domain.bo.TalentCandidateBo;
+import com.ruoyi.system.domain.vo.TalentCandidateVo;
 import com.ruoyi.system.service.ISysTalentCandidateService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +36,22 @@ public class SysTalentCandidateController extends BaseController {
      */
     @RequiresPermissions("system:candidate:list")
     @GetMapping("/list")
-    public TableDataInfo list(SysTalentCandidate sysTalentCandidate) {
+    public TableDataInfo list(TalentCandidateBo talentCandidateBo) {
         startPage();
-        List<SysTalentCandidate> list = sysTalentCandidateService.selectSysTalentCandidateList(sysTalentCandidate);
+        List<TalentCandidateVo> list = sysTalentCandidateService.selectSysTalentCandidateList(talentCandidateBo)
+                .stream()
+                .map(candidate -> {
+                    TalentCandidateVo vo = new TalentCandidateVo();
+                    BeanUtils.copyBeanProp(vo, candidate);
+                    if (StringUtils.isNotEmpty(candidate.getIndustry())) {
+                        vo.setIndustry(List.of(candidate.getIndustry().split(",")));
+                    }
+                    if (StringUtils.isNotEmpty(candidate.getPost())) {
+                        vo.setPost(List.of(candidate.getPost().split(",")));
+                    }
+                    return vo;
+                })
+                .toList();
         return getDataTable(list);
     }
 
@@ -44,9 +61,9 @@ public class SysTalentCandidateController extends BaseController {
     @RequiresPermissions("system:candidate:export")
     @Log(title = "人才库", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, SysTalentCandidate sysTalentCandidate) {
-        List<SysTalentCandidate> list = sysTalentCandidateService.selectSysTalentCandidateList(sysTalentCandidate);
-        ExcelUtil<SysTalentCandidate> util = new ExcelUtil<SysTalentCandidate>(SysTalentCandidate.class);
+    public void export(HttpServletResponse response, TalentCandidateBo talentCandidateBo) {
+        List<SysTalentCandidate> list = sysTalentCandidateService.selectSysTalentCandidateList(talentCandidateBo);
+        ExcelUtil<SysTalentCandidate> util = new ExcelUtil<>(SysTalentCandidate.class);
         util.exportExcel(response, list, "人才库数据");
     }
 
@@ -65,8 +82,8 @@ public class SysTalentCandidateController extends BaseController {
     @RequiresPermissions("system:candidate:add")
     @Log(title = "人才库", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody SysTalentCandidate sysTalentCandidate) {
-        return toAjax(sysTalentCandidateService.insertSysTalentCandidate(sysTalentCandidate));
+    public AjaxResult add(@RequestBody TalentCandidateBo sysTalentCandidateBo) {
+        return toAjax(sysTalentCandidateService.insertSysTalentCandidate(sysTalentCandidateBo));
     }
 
     /**
@@ -75,8 +92,8 @@ public class SysTalentCandidateController extends BaseController {
     @RequiresPermissions("system:candidate:edit")
     @Log(title = "人才库", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody SysTalentCandidate sysTalentCandidate) {
-        return toAjax(sysTalentCandidateService.updateSysTalentCandidate(sysTalentCandidate));
+    public AjaxResult edit(@RequestBody TalentCandidateBo sysTalentCandidateBo) {
+        return toAjax(sysTalentCandidateService.updateSysTalentCandidate(sysTalentCandidateBo));
     }
 
     /**

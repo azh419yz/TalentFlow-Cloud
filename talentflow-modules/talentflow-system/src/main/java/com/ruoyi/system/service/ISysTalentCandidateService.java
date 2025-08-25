@@ -1,6 +1,8 @@
 package com.ruoyi.system.service;
 
 import com.ruoyi.system.domain.SysTalentCandidate;
+import com.ruoyi.system.domain.bo.TalentCandidateBo;
+import com.ruoyi.system.domain.vo.TalentCandidateVo;
 
 import java.util.List;
 
@@ -17,31 +19,31 @@ public interface ISysTalentCandidateService {
      * @param id 人才库主键
      * @return 人才库
      */
-    SysTalentCandidate selectSysTalentCandidateById(Long id);
+    TalentCandidateVo selectSysTalentCandidateById(Long id);
 
     /**
      * 查询人才库列表
      *
-     * @param sysTalentCandidate 人才库
+     * @param talentCandidateBo 人才库
      * @return 人才库集合
      */
-    List<SysTalentCandidate> selectSysTalentCandidateList(SysTalentCandidate sysTalentCandidate);
+    List<SysTalentCandidate> selectSysTalentCandidateList(TalentCandidateBo talentCandidateBo);
 
     /**
      * 新增人才库
      *
-     * @param sysTalentCandidate 人才库
+     * @param talentCandidateBo 人才库
      * @return 结果
      */
-    int insertSysTalentCandidate(SysTalentCandidate sysTalentCandidate);
+    int insertSysTalentCandidate(TalentCandidateBo talentCandidateBo);
 
     /**
      * 修改人才库
      *
-     * @param sysTalentCandidate 人才库
+     * @param talentCandidateBo 人才库
      * @return 结果
      */
-    int updateSysTalentCandidate(SysTalentCandidate sysTalentCandidate);
+    int updateSysTalentCandidate(TalentCandidateBo talentCandidateBo);
 
     /**
      * 批量删除人才库

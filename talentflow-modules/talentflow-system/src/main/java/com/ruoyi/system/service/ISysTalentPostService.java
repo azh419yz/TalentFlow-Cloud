@@ -1,7 +1,7 @@
 package com.ruoyi.system.service;
 
 import com.ruoyi.system.domain.SysTalentPost;
-import com.ruoyi.system.domain.vo.SysTalentPostVo;
+import com.ruoyi.system.domain.vo.TalentPostVo;
 
 import java.util.List;
 
@@ -60,6 +60,6 @@ public interface ISysTalentPostService {
      */
     int deleteSysTalentPostById(Long id);
 
-    List<SysTalentPostVo> selectAllPosts();
+    List<TalentPostVo> selectAllPosts();
 
 }

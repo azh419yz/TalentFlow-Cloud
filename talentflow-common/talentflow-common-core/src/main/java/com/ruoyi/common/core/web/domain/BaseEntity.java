@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.annotation.TableField;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serial;
@@ -33,12 +34,14 @@ public class BaseEntity implements Serializable {
     /**
      * 创建者
      */
+    @Getter
     @TableField(fill = FieldFill.INSERT)
     private String createBy;
 
     /**
      * 创建时间
      */
+    @Getter
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.INSERT)
     private Date createTime;
@@ -46,12 +49,14 @@ public class BaseEntity implements Serializable {
     /**
      * 更新者
      */
+    @Getter
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
 
     /**
      * 更新时间
      */
+    @Getter
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private Date updateTime;
@@ -59,6 +64,7 @@ public class BaseEntity implements Serializable {
     /**
      * 备注
      */
+    @Getter
     private String remark;
 
     /**
@@ -67,30 +73,6 @@ public class BaseEntity implements Serializable {
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
     @TableField(exist = false)
     private Map<String, Object> params;
-
-    public String getSearchValue() {
-        return searchValue;
-    }
-
-    public String getCreateBy() {
-        return createBy;
-    }
-
-    public Date getCreateTime() {
-        return createTime;
-    }
-
-    public String getUpdateBy() {
-        return updateBy;
-    }
-
-    public Date getUpdateTime() {
-        return updateTime;
-    }
-
-    public String getRemark() {
-        return remark;
-    }
 
     public Map<String, Object> getParams() {
         if (params == null) {
