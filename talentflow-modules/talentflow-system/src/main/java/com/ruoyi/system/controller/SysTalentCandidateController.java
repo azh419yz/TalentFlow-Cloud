@@ -36,7 +36,7 @@ public class SysTalentCandidateController extends BaseController {
      */
     @RequiresPermissions("system:candidate:list")
     @GetMapping("/list")
-    public TableDataInfo list(TalentCandidateBo talentCandidateBo) {
+    public TableDataInfo<TalentCandidateVo> list(TalentCandidateBo talentCandidateBo) {
         startPage();
         List<TalentCandidateVo> list = sysTalentCandidateService.selectSysTalentCandidateList(talentCandidateBo)
                 .stream()

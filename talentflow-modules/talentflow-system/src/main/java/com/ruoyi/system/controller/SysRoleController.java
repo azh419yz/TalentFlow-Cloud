@@ -78,7 +78,6 @@ public class SysRoleController extends BaseController {
         } else if (!roleService.checkRoleKeyUnique(role)) {
             return error("新增角色'" + role.getRoleName() + "'失败，角色权限已存在");
         }
-        role.setCreateBy(SecurityUtils.getUsername());
         return toAjax(roleService.insertRole(role));
 
     }
@@ -97,7 +96,6 @@ public class SysRoleController extends BaseController {
         } else if (!roleService.checkRoleKeyUnique(role)) {
             return error("修改角色'" + role.getRoleName() + "'失败，角色权限已存在");
         }
-        role.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(roleService.updateRole(role));
     }
 
@@ -122,7 +120,6 @@ public class SysRoleController extends BaseController {
     public AjaxResult changeStatus(@RequestBody SysRole role) {
         roleService.checkRoleAllowed(role);
         roleService.checkRoleDataScope(role.getRoleId());
-        role.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(roleService.updateRoleStatus(role));
     }
 

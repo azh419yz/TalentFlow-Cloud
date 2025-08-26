@@ -29,8 +29,6 @@ import java.io.File;
 @Service("xFileStorageFileService")
 public class XFileStorageSysFileServiceImpl implements ISysFileService {
 
-    private static final Logger logger = LoggerFactory.getLogger(XFileStorageSysFileServiceImpl.class);
-
     @Autowired
     private RemoteFileDetailService remoteFileDetailService;
 
@@ -43,7 +41,7 @@ public class XFileStorageSysFileServiceImpl implements ISysFileService {
     @Override
     public String uploadFile(MultipartFile file) {
         FileInfo fileInfo = fileStorage.of(file).upload();
-        logger.info("上传文件 -> {}", fileInfo);
+        log.info("上传文件 -> {}", fileInfo);
         if (this.saveFileDetail(fileInfo)) {
             return fileInfo.getUrl();
         }
@@ -53,7 +51,7 @@ public class XFileStorageSysFileServiceImpl implements ISysFileService {
     @Override
     public boolean deleteFile(String fileUrl) {
         FileInfo fileInfo = this.getByUrl(fileUrl);
-        logger.info("删除文件 -> {}", fileInfo);
+        log.info("删除文件 -> {}", fileInfo);
         fileStorage.delete(fileInfo);
         return remoteFileDetailService.removeByUrl(fileUrl, SecurityConstants.INNER).getData();
     }

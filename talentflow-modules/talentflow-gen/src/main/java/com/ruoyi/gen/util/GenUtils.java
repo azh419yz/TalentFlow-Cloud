@@ -18,14 +18,14 @@ public class GenUtils {
     /**
      * 初始化表信息
      */
-    public static void initTable(GenTable genTable, String operName) {
+    public static void initTable(GenTable genTable, Long operId) {
         genTable.setClassName(convertClassName(genTable.getTableName()));
         genTable.setPackageName(GenConfig.getPackageName());
         genTable.setModuleName(getModuleName(GenConfig.getPackageName()));
         genTable.setBusinessName(getBusinessName(genTable.getTableName()));
         genTable.setFunctionName(replaceText(genTable.getTableComment()));
         genTable.setFunctionAuthor(GenConfig.getAuthor());
-        genTable.setCreateBy(operName);
+        genTable.setCreateBy(operId);
     }
 
     /**
@@ -165,15 +165,14 @@ public class GenUtils {
     /**
      * 批量替换前缀
      *
-     * @param replacementm 替换值
+     * @param replacements 替换值
      * @param searchList   替换列表
-     * @return
      */
-    public static String replaceFirst(String replacementm, String[] searchList) {
-        String text = replacementm;
+    public static String replaceFirst(String replacements, String[] searchList) {
+        String text = replacements;
         for (String searchString : searchList) {
-            if (replacementm.startsWith(searchString)) {
-                text = replacementm.replaceFirst(searchString, "");
+            if (replacements.startsWith(searchString)) {
+                text = replacements.replaceFirst(searchString, "");
                 break;
             }
         }

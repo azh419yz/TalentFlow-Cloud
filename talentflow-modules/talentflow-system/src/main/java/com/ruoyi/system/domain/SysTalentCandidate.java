@@ -89,11 +89,6 @@ public class SysTalentCandidate extends BaseEntity {
     @Excel(name = "简历文件地址")
     private String resumeUrl;
 
-    /**
-     * 部门ID
-     */
-    private Long deptId;
-
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
@@ -107,7 +102,6 @@ public class SysTalentCandidate extends BaseEntity {
                 .append("skillTags", getSkillTags())
                 .append("resumeFilename", getResumeFilename())
                 .append("resumeUrl", getResumeUrl())
-                .append("deptId", getDeptId())
                 .append("createBy", getCreateBy())
                 .append("createTime", getCreateTime())
                 .append("updateBy", getUpdateBy())

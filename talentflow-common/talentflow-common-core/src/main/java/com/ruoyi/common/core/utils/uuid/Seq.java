@@ -81,6 +81,6 @@ public class Seq
             atomicInt.set(1);
         }
         // 转字符串，用0左补齐
-        return StringUtils.padl(value, length);
+        return StringUtils.padL(value, length);
     }
 }

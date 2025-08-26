@@ -8,7 +8,7 @@
         <version>3.6.6</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
-    
+
     <artifactId>talentflow-common-datasource</artifactId>
 
     <description>
@@ -16,6 +16,12 @@
     </description>
 
     <dependencies>
+
+        <!-- RuoYi Common Security -->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>talentflow-common-security</artifactId>
+        </dependency>
 
         <!-- Druid -->
         <dependency>
@@ -31,5 +37,27 @@
             <version>${dynamic-ds.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-spring-boot3-starter</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-jsqlparser</artifactId>
+        </dependency>
+
+        <!-- sql性能分析插件 -->
+        <dependency>
+            <groupId>p6spy</groupId>
+            <artifactId>p6spy</artifactId>
+        </dependency>
+
+        <!-- hutool工具模块 -->
+        <dependency>
+            <groupId>cn.hutool</groupId>
+            <artifactId>hutool-all</artifactId>
+            <version>${hutool.version}</version>
+        </dependency>
     </dependencies>
 </project>

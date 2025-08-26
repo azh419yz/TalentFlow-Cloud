@@ -34,6 +34,10 @@ nbbuild/
 dist/
 nbdist/
 .nb-gradle/
+### Visual Studio Code ###
+.vscode/
+### Qoder ###
+.qoder/
 
 ######################################################################
 # Others

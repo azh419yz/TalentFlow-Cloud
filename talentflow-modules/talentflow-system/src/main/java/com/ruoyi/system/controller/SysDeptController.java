@@ -7,7 +7,6 @@ import com.ruoyi.common.core.web.domain.AjaxResult;
 import com.ruoyi.common.log.annotation.Log;
 import com.ruoyi.common.log.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
-import com.ruoyi.common.security.utils.SecurityUtils;
 import com.ruoyi.system.api.domain.SysDept;
 import com.ruoyi.system.service.ISysDeptService;
 import org.apache.commons.lang3.ArrayUtils;
@@ -69,7 +68,6 @@ public class SysDeptController extends BaseController {
         if (!deptService.checkDeptNameUnique(dept)) {
             return error("新增部门'" + dept.getDeptName() + "'失败，部门名称已存在");
         }
-        dept.setCreateBy(SecurityUtils.getUsername());
         return toAjax(deptService.insertDept(dept));
     }
 
@@ -89,7 +87,6 @@ public class SysDeptController extends BaseController {
         } else if (StringUtils.equals(UserConstants.DEPT_DISABLE, dept.getStatus()) && deptService.selectNormalChildrenDeptById(deptId) > 0) {
             return error("该部门包含未停用的子部门！");
         }
-        dept.setUpdateBy(SecurityUtils.getUsername());
         return toAjax(deptService.updateDept(dept));
     }
 

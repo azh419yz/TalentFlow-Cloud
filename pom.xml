@@ -27,6 +27,7 @@
         <pagehelper.boot.version>2.1.0</pagehelper.boot.version>
         <druid.version>1.2.23</druid.version>
         <dynamic-ds.version>4.3.1</dynamic-ds.version>
+        <p6spy.version>3.9.1</p6spy.version>
         <commons.io.version>2.19.0</commons.io.version>
         <velocity.version>2.3</velocity.version>
         <fastjson.version>2.0.57</fastjson.version>
@@ -35,6 +36,8 @@
         <poi.version>4.1.2</poi.version>
         <springdoc.version>2.6.0</springdoc.version>
         <transmittable-thread-local.version>2.14.4</transmittable-thread-local.version>
+        <mapstruct-plus.version>1.2.1</mapstruct-plus.version>
+        <mapstruct-plus.lombok.version>0.2.0</mapstruct-plus.lombok.version>
         <lombok.version>1.18.36</lombok.version>
         <x-file-storage.version>2.3.0</x-file-storage.version>
         <aliyun-sdk-oss.version>3.16.1</aliyun-sdk-oss.version>
@@ -250,6 +253,19 @@
                 <scope>import</scope>
             </dependency>
 
+            <!-- sql性能分析插件 -->
+            <dependency>
+                <groupId>p6spy</groupId>
+                <artifactId>p6spy</artifactId>
+                <version>${p6spy.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.github.linpeilie</groupId>
+                <artifactId>mapstruct-plus-spring-boot-starter</artifactId>
+                <version>${mapstruct-plus.version}</version>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -282,6 +298,28 @@
                     <source>${java.version}</source>
                     <target>${java.version}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                            <version>${lombok.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.springframework.boot</groupId>
+                            <artifactId>spring-boot-configuration-processor</artifactId>
+                            <version>${spring-boot.version}</version>
+                        </path>
+                        <path>
+                            <groupId>io.github.linpeilie</groupId>
+                            <artifactId>mapstruct-plus-processor</artifactId>
+                            <version>${mapstruct-plus.version}</version>
+                        </path>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok-mapstruct-binding</artifactId>
+                            <version>${mapstruct-plus.lombok.version}</version>
+                        </path>
+                    </annotationProcessorPaths>
                 </configuration>
             </plugin>
         </plugins>

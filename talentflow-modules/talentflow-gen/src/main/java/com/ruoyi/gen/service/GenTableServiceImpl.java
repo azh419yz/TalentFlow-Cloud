@@ -1,27 +1,5 @@
 package com.ruoyi.gen.service;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.StringWriter;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.function.Function;
-import java.util.stream.Collectors;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipOutputStream;
-
-import org.apache.commons.io.FileUtils;
-import org.apache.commons.io.IOUtils;
-import org.apache.velocity.Template;
-import org.apache.velocity.VelocityContext;
-import org.apache.velocity.app.Velocity;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
 import com.ruoyi.common.core.constant.Constants;
@@ -37,6 +15,28 @@ import com.ruoyi.gen.mapper.GenTableMapper;
 import com.ruoyi.gen.util.GenUtils;
 import com.ruoyi.gen.util.VelocityInitializer;
 import com.ruoyi.gen.util.VelocityUtils;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.io.IOUtils;
+import org.apache.velocity.Template;
+import org.apache.velocity.VelocityContext;
+import org.apache.velocity.app.Velocity;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.IOException;
+import java.io.StringWriter;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 /**
  * 业务 服务层实现
@@ -113,7 +113,6 @@ public class GenTableServiceImpl implements IGenTableService {
      * 修改业务
      *
      * @param genTable 业务信息
-     * @return 结果
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -132,7 +131,6 @@ public class GenTableServiceImpl implements IGenTableService {
      * 删除业务对象
      *
      * @param tableIds 需要删除的数据ID
-     * @return 结果
      */
     @Override
     @Transactional(rollbackFor = Exception.class)
@@ -149,11 +147,11 @@ public class GenTableServiceImpl implements IGenTableService {
     @Override
     @Transactional(rollbackFor = Exception.class)
     public void importGenTable(List<GenTable> tableList) {
-        String operName = SecurityUtils.getUsername();
+        Long userId = SecurityUtils.getUserId();
         try {
             for (GenTable table : tableList) {
                 String tableName = table.getTableName();
-                GenUtils.initTable(table, operName);
+                GenUtils.initTable(table, userId);
                 int row = genTableMapper.insertGenTable(table);
                 if (row > 0) {
                     // 保存列信息
@@ -267,7 +265,7 @@ public class GenTableServiceImpl implements IGenTableService {
         if (StringUtils.isEmpty(dbTableColumns)) {
             throw new ServiceException("同步数据失败，原表结构不存在");
         }
-        List<String> dbTableColumnNames = dbTableColumns.stream().map(GenTableColumn::getColumnName).collect(Collectors.toList());
+        List<String> dbTableColumnNames = dbTableColumns.stream().map(GenTableColumn::getColumnName).toList();
 
         dbTableColumns.forEach(column -> {
             GenUtils.initColumnField(column, table);

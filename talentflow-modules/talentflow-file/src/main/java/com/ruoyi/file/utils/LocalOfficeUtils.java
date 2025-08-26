@@ -1,7 +1,6 @@
 package com.ruoyi.file.utils;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -14,19 +13,18 @@ import java.util.List;
  *
  * @author kenmi
  */
+@Slf4j
 @Component
 public class LocalOfficeUtils {
-
-    private static final Logger log = LoggerFactory.getLogger(LocalOfficeUtils.class);
 
     @Value("${office.home:default}")
     private String officeHomePath;
 
     // 不同操作系统的LibreOffice可执行文件路径
-    private static final String EXECUTABLE_WINDOWS = "program/soffice.exe" ;
-    private static final String EXECUTABLE_MAC = "program/soffice" ;
-    private static final String EXECUTABLE_MAC_41 = "MacOS/soffice" ;
-    private static final String EXECUTABLE_LINUX = "program/soffice.bin" ;
+    private static final String EXECUTABLE_WINDOWS = "program/soffice.exe";
+    private static final String EXECUTABLE_MAC = "program/soffice";
+    private static final String EXECUTABLE_MAC_41 = "MacOS/soffice";
+    private static final String EXECUTABLE_LINUX = "program/soffice.bin";
 
     // 常见的LibreOffice安装路径
     private static final List<String> WINDOWS_PATHS = List.of(
