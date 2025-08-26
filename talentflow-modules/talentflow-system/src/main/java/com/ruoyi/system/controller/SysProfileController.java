@@ -1,7 +1,7 @@
 package com.ruoyi.system.controller;
 
 import com.ruoyi.common.core.domain.R;
-import com.ruoyi.common.core.enums.FileServiceType;
+import com.ruoyi.common.core.enums.FileStorageType;
 import com.ruoyi.common.core.utils.DateUtils;
 import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.utils.file.FileTypeUtils;
@@ -120,7 +120,7 @@ public class SysProfileController extends BaseController {
             if (!StringUtils.equalsAnyIgnoreCase(extension, MimeTypeUtils.IMAGE_EXTENSION)) {
                 return error("文件格式不正确，请上传" + Arrays.toString(MimeTypeUtils.IMAGE_EXTENSION) + "格式");
             }
-            R<SysFile> fileResult = remoteFileService.upload(file, FileServiceType.LOCAL.getType());
+            R<SysFile> fileResult = remoteFileService.upload(file, FileStorageType.LOCAL.getType());
             if (StringUtils.isNull(fileResult) || StringUtils.isNull(fileResult.getData())) {
                 return error("文件服务异常，请联系管理员");
             }
@@ -128,7 +128,7 @@ public class SysProfileController extends BaseController {
             if (userService.updateUserAvatar(loginUser.getUserid(), url)) {
                 String oldAvatarUrl = loginUser.getSysUser().getAvatar();
                 if (StringUtils.isNotEmpty(oldAvatarUrl)) {
-                    remoteFileService.delete(oldAvatarUrl, FileServiceType.LOCAL.getType());
+                    remoteFileService.delete(oldAvatarUrl, FileStorageType.LOCAL.getType());
                 }
                 AjaxResult ajax = AjaxResult.success();
                 ajax.put("imgUrl", url);

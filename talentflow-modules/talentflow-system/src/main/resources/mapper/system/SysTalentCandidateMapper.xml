@@ -14,6 +14,7 @@
         <result property="industry" column="industry"/>
         <result property="post" column="post"/>
         <result property="skillTags" column="skill_tags"/>
+        <result property="resumeFilename" column="resume_filename"/>
         <result property="resumeUrl" column="resume_url"/>
         <result property="deptId" column="dept_id"/>
         <result property="createBy" column="create_by"/>
@@ -33,6 +34,7 @@
                industry,
                post,
                skill_tags,
+               resume_filename,
                resume_url,
                dept_id,
                create_by,

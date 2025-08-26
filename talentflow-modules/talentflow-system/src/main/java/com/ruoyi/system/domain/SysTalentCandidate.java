@@ -78,6 +78,12 @@ public class SysTalentCandidate extends BaseEntity {
     private String skillTags;
 
     /**
+     * 简历文件名
+     */
+    @Excel(name = "简历文件名")
+    private String resumeFilename;
+
+    /**
      * 简历文件地址
      */
     @Excel(name = "简历文件地址")
@@ -99,6 +105,7 @@ public class SysTalentCandidate extends BaseEntity {
                 .append("expectedSalary", getExpectedSalary())
                 .append("industry", getIndustry())
                 .append("skillTags", getSkillTags())
+                .append("resumeFilename", getResumeFilename())
                 .append("resumeUrl", getResumeUrl())
                 .append("deptId", getDeptId())
                 .append("createBy", getCreateBy())

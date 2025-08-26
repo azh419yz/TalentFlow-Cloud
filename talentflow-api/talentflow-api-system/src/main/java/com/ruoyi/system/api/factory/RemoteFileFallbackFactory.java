@@ -23,12 +23,12 @@ public class RemoteFileFallbackFactory implements FallbackFactory<RemoteFileServ
         log.error("文件服务调用失败:{}", throwable.getMessage());
         return new RemoteFileService() {
             @Override
-            public R<SysFile> upload(MultipartFile file, String serviceType) {
+            public R<SysFile> upload(MultipartFile file, String storageType) {
                 return R.fail("上传文件失败:" + throwable.getMessage());
             }
 
             @Override
-            public R<Boolean> delete(String fileUrl, String serviceType) {
+            public R<Boolean> delete(String fileUrl, String storageType) {
                 return R.fail("删除文件失败:" + throwable.getMessage());
             }
         };

@@ -27,7 +27,7 @@ public interface RemoteFileService {
      */
     @PostMapping(value = "/upload", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     R<SysFile> upload(@RequestPart(value = "file") MultipartFile file,
-                      @RequestParam("serviceType") String serviceType);
+                      @RequestParam("storageType") String storageType);
 
     /**
      * 删除文件
@@ -37,5 +37,5 @@ public interface RemoteFileService {
      */
     @DeleteMapping(value = "/delete", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
     R<Boolean> delete(@RequestParam("fileUrl") String fileUrl,
-                      @RequestParam("serviceType") String serviceType);
+                      @RequestParam("storageType") String storageType);
 }
