@@ -2,7 +2,7 @@ package com.ruoyi.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ruoyi.common.core.utils.DateUtils;
-import com.ruoyi.common.core.utils.bean.BeanUtils;
+import com.ruoyi.common.core.utils.MapstructUtils;
 import com.ruoyi.system.domain.SysTalentPost;
 import com.ruoyi.system.domain.vo.TalentPostVo;
 import com.ruoyi.system.mapper.SysTalentPostMapper;
@@ -127,11 +127,7 @@ public class SysTalentPostServiceImpl implements ISysTalentPostService {
                         .eq(SysTalentPost::getParentId, parentId)
                         .eq(SysTalentPost::getType, type))
                 .stream()
-                .map(post -> {
-                    TalentPostVo vo = new TalentPostVo();
-                    BeanUtils.copyBeanProp(vo, post);
-                    return vo;
-                }).toList();
+                .map(post -> MapstructUtils.convert(post, TalentPostVo.class)).toList();
     }
 
     private List<TalentPostVo> listPosts(List<Long> parentIds, String type) {
@@ -139,10 +135,6 @@ public class SysTalentPostServiceImpl implements ISysTalentPostService {
                         .in(SysTalentPost::getParentId, parentIds)
                         .eq(SysTalentPost::getType, type))
                 .stream()
-                .map(post -> {
-                    TalentPostVo vo = new TalentPostVo();
-                    BeanUtils.copyBeanProp(vo, post);
-                    return vo;
-                }).toList();
+                .map(post -> MapstructUtils.convert(post, TalentPostVo.class)).toList();
     }
 }

@@ -2,7 +2,7 @@ package com.ruoyi.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ruoyi.common.core.utils.DateUtils;
-import com.ruoyi.common.core.utils.bean.BeanUtils;
+import com.ruoyi.common.core.utils.MapstructUtils;
 import com.ruoyi.system.domain.SysTalentIndustry;
 import com.ruoyi.system.domain.vo.TalentIndustryVo;
 import com.ruoyi.system.mapper.SysTalentIndustryMapper;
@@ -101,11 +101,7 @@ public class SysTalentIndustryServiceImpl implements ISysTalentIndustryService {
                         .eq(SysTalentIndustry::getParentId, 0L)
                         .eq(SysTalentIndustry::getType, "category"))
                 .stream()
-                .map(industry -> {
-                    TalentIndustryVo vo = new TalentIndustryVo();
-                    BeanUtils.copyBeanProp(vo, industry);
-                    return vo;
-                }).toList();
+                .map(industry -> MapstructUtils.convert(industry, TalentIndustryVo.class)).toList();
         List<Long> categoryIds = categoryList.stream().map(TalentIndustryVo::getId).toList();
 
         // 获取industry
@@ -113,11 +109,7 @@ public class SysTalentIndustryServiceImpl implements ISysTalentIndustryService {
                         .in(SysTalentIndustry::getParentId, categoryIds)
                         .eq(SysTalentIndustry::getType, "industry"))
                 .stream()
-                .map(industry -> {
-                    TalentIndustryVo vo = new TalentIndustryVo();
-                    BeanUtils.copyBeanProp(vo, industry);
-                    return vo;
-                }).toList();
+                .map(industry -> MapstructUtils.convert(industry, TalentIndustryVo.class)).toList();
         // 按分类id分组
         Map<Long, List<TalentIndustryVo>> industryMap = industryList.stream()
                 .collect(Collectors.groupingBy(TalentIndustryVo::getParentId));

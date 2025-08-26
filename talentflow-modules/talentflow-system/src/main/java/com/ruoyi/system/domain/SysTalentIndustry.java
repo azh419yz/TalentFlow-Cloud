@@ -36,7 +36,7 @@ public class SysTalentIndustry extends BaseEntity {
     private Long parentId;
 
     /**
-     * $column.columnComment
+     * 类型
      */
     private String type;
 

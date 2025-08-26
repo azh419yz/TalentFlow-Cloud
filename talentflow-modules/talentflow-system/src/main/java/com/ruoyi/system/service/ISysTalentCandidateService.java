@@ -1,6 +1,7 @@
 package com.ruoyi.system.service;
 
-import com.ruoyi.system.domain.SysTalentCandidate;
+import com.ruoyi.common.core.web.page.PageQuery;
+import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.system.domain.bo.TalentCandidateBo;
 import com.ruoyi.system.domain.vo.TalentCandidateVo;
 
@@ -27,7 +28,9 @@ public interface ISysTalentCandidateService {
      * @param talentCandidateBo 人才库
      * @return 人才库集合
      */
-    List<SysTalentCandidate> selectSysTalentCandidateList(TalentCandidateBo talentCandidateBo);
+    TableDataInfo<TalentCandidateVo> selectPageTalentCandidateList(TalentCandidateBo talentCandidateBo, PageQuery pageQuery);
+
+    List<TalentCandidateVo> selectTalentCandidateList(TalentCandidateBo talentCandidateBo);
 
     /**
      * 新增人才库

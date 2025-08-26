@@ -1,15 +1,13 @@
 package com.ruoyi.system.controller;
 
-import com.ruoyi.common.core.utils.StringUtils;
-import com.ruoyi.common.core.utils.bean.BeanUtils;
 import com.ruoyi.common.core.utils.poi.ExcelUtil;
 import com.ruoyi.common.core.web.controller.BaseController;
 import com.ruoyi.common.core.web.domain.AjaxResult;
+import com.ruoyi.common.core.web.page.PageQuery;
 import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.common.log.annotation.Log;
 import com.ruoyi.common.log.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
-import com.ruoyi.system.domain.SysTalentCandidate;
 import com.ruoyi.system.domain.bo.TalentCandidateBo;
 import com.ruoyi.system.domain.vo.TalentCandidateVo;
 import com.ruoyi.system.service.ISysTalentCandidateService;
@@ -36,23 +34,8 @@ public class SysTalentCandidateController extends BaseController {
      */
     @RequiresPermissions("system:candidate:list")
     @GetMapping("/list")
-    public TableDataInfo<TalentCandidateVo> list(TalentCandidateBo talentCandidateBo) {
-        startPage();
-        List<TalentCandidateVo> list = sysTalentCandidateService.selectSysTalentCandidateList(talentCandidateBo)
-                .stream()
-                .map(candidate -> {
-                    TalentCandidateVo vo = new TalentCandidateVo();
-                    BeanUtils.copyBeanProp(vo, candidate);
-                    if (StringUtils.isNotEmpty(candidate.getIndustry())) {
-                        vo.setIndustry(List.of(candidate.getIndustry().split(",")));
-                    }
-                    if (StringUtils.isNotEmpty(candidate.getPost())) {
-                        vo.setPost(List.of(candidate.getPost().split(",")));
-                    }
-                    return vo;
-                })
-                .toList();
-        return getDataTable(list);
+    public TableDataInfo<TalentCandidateVo> list(TalentCandidateBo talentCandidateBo, PageQuery pageQuery) {
+        return sysTalentCandidateService.selectPageTalentCandidateList(talentCandidateBo, pageQuery);
     }
 
     /**
@@ -61,9 +44,9 @@ public class SysTalentCandidateController extends BaseController {
     @RequiresPermissions("system:candidate:export")
     @Log(title = "人才库", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(HttpServletResponse response, TalentCandidateBo talentCandidateBo) {
-        List<SysTalentCandidate> list = sysTalentCandidateService.selectSysTalentCandidateList(talentCandidateBo);
-        ExcelUtil<SysTalentCandidate> util = new ExcelUtil<>(SysTalentCandidate.class);
+    public void export(TalentCandidateBo talentCandidateBo, HttpServletResponse response) {
+        List<TalentCandidateVo> list = sysTalentCandidateService.selectTalentCandidateList(talentCandidateBo);
+        ExcelUtil<TalentCandidateVo> util = new ExcelUtil<>(TalentCandidateVo.class);
         util.exportExcel(response, list, "人才库数据");
     }
 

@@ -1,5 +1,7 @@
 package com.ruoyi.system.domain.vo;
 
+import com.ruoyi.system.domain.SysTalentPost;
+import io.github.linpeilie.annotations.AutoMapper;
 import lombok.Data;
 
 import java.util.List;
@@ -11,6 +13,7 @@ import java.util.List;
  * @date 2025-08-17
  */
 @Data
+@AutoMapper(target = SysTalentPost.class)
 public class TalentPostVo {
 
     /**

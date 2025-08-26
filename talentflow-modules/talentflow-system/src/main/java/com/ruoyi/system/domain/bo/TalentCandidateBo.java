@@ -1,13 +1,13 @@
 package com.ruoyi.system.domain.bo;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.ruoyi.common.core.web.domain.BaseEntity;
+import com.ruoyi.system.domain.SysTalentCandidate;
+import io.github.linpeilie.annotations.AutoMapper;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
-import java.io.Serializable;
-import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 人才库对象 sys_talent_candidate
@@ -15,8 +15,10 @@ import java.util.Map;
  * @author ruoyi
  * @date 2025-08-15
  */
+@EqualsAndHashCode(callSuper = true)
 @Data
-public class TalentCandidateBo implements Serializable {
+@AutoMapper(target = SysTalentCandidate.class, reverseConvertGenerate = false)
+public class TalentCandidateBo extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -26,7 +28,7 @@ public class TalentCandidateBo implements Serializable {
     private Long id;
 
     /**
-     * $column.columnComment
+     * 候选人姓名
      */
     private String name;
 
@@ -53,12 +55,12 @@ public class TalentCandidateBo implements Serializable {
     /**
      * 行业
      */
-    private List<String> industry;
+    private List<String> industryList;
 
     /**
      * 行业
      */
-    private List<String> post;
+    private List<String> postList;
 
     /**
      * 专业技能
@@ -66,14 +68,14 @@ public class TalentCandidateBo implements Serializable {
     private String skillTags;
 
     /**
+     * 简历文件名
+     */
+    private String resumeFilename;
+
+    /**
      * 简历文件地址
      */
     private String resumeUrl;
-
-    /**
-     * 请求参数
-     */
-    private Map<String, Object> params;
 
     /**
      * 备注

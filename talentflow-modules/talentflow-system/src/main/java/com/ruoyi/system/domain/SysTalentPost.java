@@ -40,7 +40,7 @@ public class SysTalentPost extends BaseEntity {
     private Long parentId;
 
     /**
-     * $column.columnComment
+     * 类型
      */
     @Excel(name = "${comment}", readConverterExp = "$column.readConverterExp()")
     private String type;
