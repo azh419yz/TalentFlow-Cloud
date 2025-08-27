@@ -1,7 +1,7 @@
 package com.ruoyi.system.mapper;
 
 import java.util.List;
-import com.ruoyi.system.api.domain.SysLogininfor;
+import com.ruoyi.system.api.domain.SysLoginInfo;
 
 /**
  * 系统访问日志情况信息 数据层
@@ -15,7 +15,7 @@ public interface SysLogininforMapper
      * 
      * @param logininfor 访问日志对象
      */
-    public int insertLogininfor(SysLogininfor logininfor);
+    public int insertLogininfor(SysLoginInfo logininfor);
 
     /**
      * 查询系统登录日志集合
@@ -23,7 +23,7 @@ public interface SysLogininforMapper
      * @param logininfor 访问日志对象
      * @return 登录记录集合
      */
-    public List<SysLogininfor> selectLogininforList(SysLogininfor logininfor);
+    public List<SysLoginInfo> selectLogininforList(SysLoginInfo logininfor);
 
     /**
      * 批量删除系统登录日志

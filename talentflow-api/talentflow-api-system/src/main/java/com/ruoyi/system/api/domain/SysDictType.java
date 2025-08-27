@@ -6,10 +6,8 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 
@@ -18,9 +16,9 @@ import java.io.Serial;
  *
  * @author kenmi
  */
-@Setter
-@Getter
-public class SysDictType extends BaseEntity {
+@EqualsAndHashCode(callSuper = true)
+@Data
+class SysDictType extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
 
@@ -52,19 +50,4 @@ public class SysDictType extends BaseEntity {
      */
     @Excel(name = "状态", readConverterExp = "0=正常,1=停用")
     private String status;
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("dictId", getDictId())
-                .append("dictName", getDictName())
-                .append("dictType", getDictType())
-                .append("status", getStatus())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

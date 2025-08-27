@@ -4,7 +4,6 @@ import com.ruoyi.common.core.constant.SecurityConstants;
 import com.ruoyi.common.core.constant.ServiceNameConstants;
 import com.ruoyi.common.core.domain.R;
 import com.ruoyi.system.api.domain.SysFileDetail;
-import com.ruoyi.system.api.factory.RemoteFileDetailFallbackFactory;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.*;
 

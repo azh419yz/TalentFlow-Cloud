@@ -20,5 +20,4 @@ public enum UserStatus {
         this.code = code;
         this.info = info;
     }
-
 }

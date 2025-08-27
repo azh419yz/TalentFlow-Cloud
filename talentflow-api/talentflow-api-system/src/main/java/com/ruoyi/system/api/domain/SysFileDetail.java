@@ -2,10 +2,8 @@ package com.ruoyi.system.api.domain;
 
 import com.ruoyi.common.core.annotation.Excel;
 import com.ruoyi.common.core.web.domain.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 
@@ -15,8 +13,8 @@ import java.io.Serial;
  * @author kenmi
  * @date 2025-08-13
  */
-@Setter
-@Getter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysFileDetail extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -115,31 +113,4 @@ public class SysFileDetail extends BaseEntity {
      */
     @Excel(name = "文件所属对象类型，例如用户头像，评价图片")
     private String objectType;
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("id", getId())
-                .append("url", getUrl())
-                .append("size", getSize())
-                .append("filename", getFilename())
-                .append("originalFilename", getOriginalFilename())
-                .append("basePath", getBasePath())
-                .append("path", getPath())
-                .append("ext", getExt())
-                .append("contentType", getContentType())
-                .append("platform", getPlatform())
-                .append("thUrl", getThUrl())
-                .append("thFilename", getThFilename())
-                .append("thSize", getThSize())
-                .append("thContentType", getThContentType())
-                .append("objectId", getObjectId())
-                .append("objectType", getObjectType())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

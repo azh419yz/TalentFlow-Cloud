@@ -6,10 +6,8 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 
@@ -18,8 +16,8 @@ import java.io.Serial;
  *
  * @author kenmi
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysPost extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -63,21 +61,4 @@ public class SysPost extends BaseEntity {
      * 用户是否存在此岗位标识 默认不存在
      */
     private boolean flag = false;
-
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("postId", getPostId())
-                .append("postCode", getPostCode())
-                .append("postName", getPostName())
-                .append("postSort", getPostSort())
-                .append("status", getStatus())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

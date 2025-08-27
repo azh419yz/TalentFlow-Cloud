@@ -21,10 +21,6 @@ public class SysPasswordService {
     @Autowired
     private RedisService redisService;
 
-    private int maxRetryCount = CacheConstants.PASSWORD_MAX_RETRY_COUNT;
-
-    private Long lockTime = CacheConstants.PASSWORD_LOCK_TIME;
-
     @Autowired
     private SysRecordLogService recordLogService;
 
@@ -47,7 +43,9 @@ public class SysPasswordService {
             retryCount = 0;
         }
 
-        if (retryCount >= Integer.valueOf(maxRetryCount).intValue()) {
+        Long lockTime = CacheConstants.PASSWORD_LOCK_TIME;
+        int maxRetryCount = CacheConstants.PASSWORD_MAX_RETRY_COUNT;
+        if (retryCount >= maxRetryCount) {
             String errMsg = String.format("密码输入错误%s次，帐户锁定%s分钟", maxRetryCount, lockTime);
             recordLogService.recordLogininfor(username, Constants.LOGIN_FAIL, errMsg);
             throw new ServiceException(errMsg);

@@ -2,11 +2,10 @@ package com.ruoyi.common.core.constant;
 
 /**
  * 返回状态码
- * 
+ *
  * @author kenmi
  */
-public class HttpStatus
-{
+public class HttpStatus {
     /**
      * 操作成功
      */

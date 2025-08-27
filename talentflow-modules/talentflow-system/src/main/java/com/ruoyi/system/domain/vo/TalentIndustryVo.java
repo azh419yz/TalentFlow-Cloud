@@ -16,7 +16,6 @@ import java.util.List;
 @AutoMapper(target = SysTalentIndustry.class)
 public class TalentIndustryVo {
 
-
     /**
      * 职位id
      */
@@ -33,5 +32,4 @@ public class TalentIndustryVo {
     private Long parentId;
 
     private List<TalentIndustryVo> industries;
-
 }

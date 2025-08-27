@@ -1,17 +1,13 @@
 package com.ruoyi.system.api.domain;
 
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
 
 /**
  * 文件信息
  *
  * @author kenmi
  */
-@Setter
-@Getter
+@Data
 public class SysFile {
     /**
      * 文件名称
@@ -22,12 +18,4 @@ public class SysFile {
      * 文件地址
      */
     private String url;
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("name", getName())
-                .append("url", getUrl())
-                .toString();
-    }
 }

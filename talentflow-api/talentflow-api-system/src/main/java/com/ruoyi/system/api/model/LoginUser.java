@@ -1,8 +1,7 @@
 package com.ruoyi.system.api.model;
 
 import com.ruoyi.system.api.domain.SysUser;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -13,8 +12,7 @@ import java.util.Set;
  *
  * @author kenmi
  */
-@Setter
-@Getter
+@Data
 public class LoginUser implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;

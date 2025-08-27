@@ -3,7 +3,7 @@ package com.ruoyi.system.service.impl;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ruoyi.system.api.domain.SysLogininfor;
+import com.ruoyi.system.api.domain.SysLoginInfo;
 import com.ruoyi.system.mapper.SysLogininforMapper;
 import com.ruoyi.system.service.ISysLogininforService;
 
@@ -25,7 +25,7 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @param logininfor 访问日志对象
      */
     @Override
-    public int insertLogininfor(SysLogininfor logininfor)
+    public int insertLogininfor(SysLoginInfo logininfor)
     {
         return logininforMapper.insertLogininfor(logininfor);
     }
@@ -37,7 +37,7 @@ public class SysLogininforServiceImpl implements ISysLogininforService
      * @return 登录记录集合
      */
     @Override
-    public List<SysLogininfor> selectLogininforList(SysLogininfor logininfor)
+    public List<SysLoginInfo> selectLogininforList(SysLoginInfo logininfor)
     {
         return logininforMapper.selectLogininforList(logininfor);
     }

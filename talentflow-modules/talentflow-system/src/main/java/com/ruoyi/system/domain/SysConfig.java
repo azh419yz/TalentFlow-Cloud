@@ -5,10 +5,8 @@ import com.ruoyi.common.core.annotation.Excel.ColumnType;
 import com.ruoyi.common.core.web.domain.BaseEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 
@@ -17,8 +15,8 @@ import java.io.Serial;
  *
  * @author kenmi
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysConfig extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -58,20 +56,4 @@ public class SysConfig extends BaseEntity {
      */
     @Excel(name = "系统内置", readConverterExp = "Y=是,N=否")
     private String configType;
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("configId", getConfigId())
-                .append("configName", getConfigName())
-                .append("configKey", getConfigKey())
-                .append("configValue", getConfigValue())
-                .append("configType", getConfigType())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
 }

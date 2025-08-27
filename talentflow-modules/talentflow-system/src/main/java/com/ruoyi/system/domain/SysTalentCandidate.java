@@ -75,5 +75,4 @@ public class SysTalentCandidate extends BaseEntity {
      * 简历文件地址
      */
     private String resumeUrl;
-
 }

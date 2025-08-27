@@ -5,10 +5,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 import java.util.ArrayList;
@@ -19,8 +17,8 @@ import java.util.List;
  *
  * @author kenmi
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysDept extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -90,25 +88,4 @@ public class SysDept extends BaseEntity {
      * 子部门
      */
     private List<SysDept> children = new ArrayList<SysDept>();
-
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("deptId", getDeptId())
-                .append("parentId", getParentId())
-                .append("ancestors", getAncestors())
-                .append("deptName", getDeptName())
-                .append("orderNum", getOrderNum())
-                .append("leader", getLeader())
-                .append("phone", getPhone())
-                .append("email", getEmail())
-                .append("status", getStatus())
-                .append("delFlag", getDelFlag())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .toString();
-    }
 }

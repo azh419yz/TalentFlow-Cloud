@@ -7,7 +7,7 @@ import com.ruoyi.common.core.constant.SecurityConstants;
 import com.ruoyi.common.core.utils.StringUtils;
 import com.ruoyi.common.core.utils.ip.IpUtils;
 import com.ruoyi.system.api.RemoteLogService;
-import com.ruoyi.system.api.domain.SysLogininfor;
+import com.ruoyi.system.api.domain.SysLoginInfo;
 
 /**
  * 记录日志方法
@@ -28,7 +28,7 @@ public class SysRecordLogService {
      * @return
      */
     public void recordLogininfor(String username, String status, String message) {
-        SysLogininfor logininfor = new SysLogininfor();
+        SysLoginInfo logininfor = new SysLoginInfo();
         logininfor.setUserName(username);
         logininfor.setIpaddr(IpUtils.getIpAddr());
         logininfor.setMsg(message);

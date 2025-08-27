@@ -6,10 +6,8 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 import java.util.Set;
@@ -19,8 +17,8 @@ import java.util.Set;
  *
  * @author kenmi
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysRole extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -115,26 +113,5 @@ public class SysRole extends BaseEntity {
 
     public static boolean isAdmin(Long roleId) {
         return roleId != null && 1L == roleId;
-    }
-
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("roleId", getRoleId())
-                .append("roleName", getRoleName())
-                .append("roleKey", getRoleKey())
-                .append("roleSort", getRoleSort())
-                .append("dataScope", getDataScope())
-                .append("menuCheckStrictly", isMenuCheckStrictly())
-                .append("deptCheckStrictly", isDeptCheckStrictly())
-                .append("status", getStatus())
-                .append("delFlag", getDelFlag())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
     }
 }

@@ -43,5 +43,4 @@ public class SysUserOnline {
      * 登录时间
      */
     private Long loginTime;
-
 }

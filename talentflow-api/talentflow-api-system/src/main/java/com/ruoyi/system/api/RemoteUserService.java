@@ -48,6 +48,6 @@ public interface RemoteUserService {
      * @param source  请求来源
      * @return 结果
      */
-    @PutMapping("/user/recordlogin")
+    @PutMapping("/user/record/login")
     R<Boolean> recordUserLogin(@RequestBody SysUser sysUser, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }

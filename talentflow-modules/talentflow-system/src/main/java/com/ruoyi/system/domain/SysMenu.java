@@ -4,10 +4,8 @@ import com.ruoyi.common.core.web.domain.BaseEntity;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 import java.util.ArrayList;
@@ -18,8 +16,8 @@ import java.util.List;
  *
  * @author kenmi
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysMenu extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -114,32 +112,5 @@ public class SysMenu extends BaseEntity {
     /**
      * 子菜单
      */
-    private List<SysMenu> children = new ArrayList<SysMenu>();
-
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("menuId", getMenuId())
-                .append("menuName", getMenuName())
-                .append("parentId", getParentId())
-                .append("orderNum", getOrderNum())
-                .append("path", getPath())
-                .append("component", getComponent())
-                .append("query", getQuery())
-                .append("routeName", getRouteName())
-                .append("isFrame", getIsFrame())
-                .append("IsCache", getIsCache())
-                .append("menuType", getMenuType())
-                .append("visible", getVisible())
-                .append("status ", getStatus())
-                .append("perms", getPerms())
-                .append("icon", getIcon())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .toString();
-    }
+    private List<SysMenu> children = new ArrayList<>();
 }

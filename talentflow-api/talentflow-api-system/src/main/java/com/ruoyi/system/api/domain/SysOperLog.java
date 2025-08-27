@@ -4,8 +4,8 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import com.ruoyi.common.core.annotation.Excel;
 import com.ruoyi.common.core.annotation.Excel.ColumnType;
 import com.ruoyi.common.core.web.domain.BaseEntity;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 import java.util.Date;
@@ -15,8 +15,8 @@ import java.util.Date;
  *
  * @author kenmi
  */
-@Setter
-@Getter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysOperLog extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -122,5 +122,4 @@ public class SysOperLog extends BaseEntity {
      */
     @Excel(name = "消耗时间", suffix = "毫秒")
     private Long costTime;
-
 }

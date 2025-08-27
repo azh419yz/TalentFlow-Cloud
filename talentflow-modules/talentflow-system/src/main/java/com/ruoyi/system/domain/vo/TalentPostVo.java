@@ -34,5 +34,4 @@ public class TalentPostVo {
     private List<TalentPostVo> groups;
 
     private List<TalentPostVo> posts;
-
 }

@@ -9,6 +9,7 @@ import org.springframework.core.io.support.DefaultPropertySourceFactory;
 import org.springframework.core.io.support.EncodedResource;
 
 import java.io.IOException;
+import java.util.Objects;
 
 /**
  * yml 配置源工厂
@@ -24,7 +25,7 @@ public class YmlPropertySourceFactory extends DefaultPropertySourceFactory {
             YamlPropertiesFactoryBean factory = new YamlPropertiesFactoryBean();
             factory.setResources(resource.getResource());
             factory.afterPropertiesSet();
-            return new PropertiesPropertySource(sourceName, factory.getObject());
+            return new PropertiesPropertySource(sourceName, Objects.requireNonNull(factory.getObject()));
         }
         return super.createPropertySource(name, resource);
     }

@@ -2,11 +2,10 @@ package com.ruoyi.common.core.constant;
 
 /**
  * Token的Key常量
- * 
+ *
  * @author kenmi
  */
-public class TokenConstants
-{
+public class TokenConstants {
     /**
      * 令牌前缀
      */

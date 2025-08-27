@@ -10,10 +10,8 @@ import com.ruoyi.common.core.xss.Xss;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
-import lombok.Getter;
-import lombok.Setter;
-import org.apache.commons.lang3.builder.ToStringBuilder;
-import org.apache.commons.lang3.builder.ToStringStyle;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serial;
 import java.util.Date;
@@ -24,8 +22,8 @@ import java.util.List;
  *
  * @author kenmi
  */
-@Getter
-@Setter
+@EqualsAndHashCode(callSuper = true)
+@Data
 public class SysUser extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
@@ -161,32 +159,5 @@ public class SysUser extends BaseEntity {
 
     public static boolean isAdmin(Long userId) {
         return UserConstants.isAdmin(userId);
-    }
-
-
-    @Override
-    public String toString() {
-        return new ToStringBuilder(this, ToStringStyle.MULTI_LINE_STYLE)
-                .append("userId", getUserId())
-                .append("deptId", getDeptId())
-                .append("userName", getUserName())
-                .append("nickName", getNickName())
-                .append("email", getEmail())
-                .append("phone_number", getPhoneNumber())
-                .append("sex", getSex())
-                .append("avatar", getAvatar())
-                .append("password", getPassword())
-                .append("status", getStatus())
-                .append("delFlag", getDelFlag())
-                .append("loginIp", getLoginIp())
-                .append("loginDate", getLoginDate())
-                .append("pwdUpdateDate", getPwdUpdateDate())
-                .append("createBy", getCreateBy())
-                .append("createTime", getCreateTime())
-                .append("updateBy", getUpdateBy())
-                .append("updateTime", getUpdateTime())
-                .append("remark", getRemark())
-                .append("dept", getDept())
-                .toString();
     }
 }
