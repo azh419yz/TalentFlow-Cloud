@@ -2,6 +2,7 @@ package com.ruoyi.system.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.ruoyi.common.core.exception.ServiceException;
@@ -14,6 +15,7 @@ import com.ruoyi.common.core.web.page.PageQuery;
 import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.system.domain.SysTalentCandidate;
 import com.ruoyi.system.domain.bo.TalentCandidateBo;
+import com.ruoyi.system.domain.request.TalentCandidateResumeUpdateRequest;
 import com.ruoyi.system.domain.vo.TalentCandidateVo;
 import com.ruoyi.system.mapper.SysTalentCandidateMapper;
 import com.ruoyi.system.service.ISysTalentCandidateService;
@@ -161,5 +163,14 @@ public class SysTalentCandidateServiceImpl implements ISysTalentCandidateService
     @Override
     public int deleteSysTalentCandidateById(Long id) {
         return talentCandidateMapper.deleteById(id);
+    }
+
+    @Override
+    public int updateSysTalentCandidateResume(TalentCandidateResumeUpdateRequest request) {
+        UpdateWrapper<SysTalentCandidate> updateWrapper = Wrappers.update();
+        updateWrapper.eq("id", request.getId())
+                .set("resume_filename", request.getResumeFilename())
+                .set("resume_url", request.getResumeUrl());
+        return talentCandidateMapper.update(updateWrapper);
     }
 }

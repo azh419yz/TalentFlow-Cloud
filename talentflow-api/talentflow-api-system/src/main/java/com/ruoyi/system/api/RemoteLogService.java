@@ -25,16 +25,16 @@ public interface RemoteLogService {
      * @param source     请求来源
      * @return 结果
      */
-    @PostMapping("/operlog")
+    @PostMapping("/oper-log")
     public R<Boolean> saveLog(@RequestBody SysOperLog sysOperLog, @RequestHeader(SecurityConstants.FROM_SOURCE) String source) throws Exception;
 
     /**
      * 保存访问记录
      *
      * @param sysLoginInfo 访问实体
-     * @param source        请求来源
+     * @param source       请求来源
      * @return 结果
      */
-    @PostMapping("/logininfor")
-    public R<Boolean> saveLogininfor(@RequestBody SysLoginInfo sysLoginInfo, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
+    @PostMapping("/login-info")
+    public R<Boolean> saveLoginInfo(@RequestBody SysLoginInfo sysLoginInfo, @RequestHeader(SecurityConstants.FROM_SOURCE) String source);
 }

@@ -3,6 +3,7 @@ package com.ruoyi.system.service;
 import com.ruoyi.common.core.web.page.PageQuery;
 import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.system.domain.bo.TalentCandidateBo;
+import com.ruoyi.system.domain.request.TalentCandidateResumeUpdateRequest;
 import com.ruoyi.system.domain.vo.TalentCandidateVo;
 
 import java.util.List;
@@ -63,4 +64,6 @@ public interface ISysTalentCandidateService {
      * @return 结果
      */
     int deleteSysTalentCandidateById(Long id);
+
+    int updateSysTalentCandidateResume(TalentCandidateResumeUpdateRequest request);
 }

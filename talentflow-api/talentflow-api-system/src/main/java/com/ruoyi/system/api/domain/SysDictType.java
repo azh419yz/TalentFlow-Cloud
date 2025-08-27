@@ -18,7 +18,7 @@ import java.io.Serial;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-class SysDictType extends BaseEntity {
+public class SysDictType extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
 

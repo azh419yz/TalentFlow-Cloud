@@ -22,7 +22,7 @@ import java.util.List;
  * @author kenmi
  */
 @RestController
-@RequestMapping("/operlog")
+@RequestMapping("/oper-log")
 public class SysOperlogController extends BaseController {
     @Autowired
     private ISysOperLogService operLogService;

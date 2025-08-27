@@ -9,10 +9,12 @@ import com.ruoyi.common.log.annotation.Log;
 import com.ruoyi.common.log.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
 import com.ruoyi.system.domain.bo.TalentCandidateBo;
+import com.ruoyi.system.domain.request.TalentCandidateResumeUpdateRequest;
 import com.ruoyi.system.domain.vo.TalentCandidateVo;
 import com.ruoyi.system.service.ISysTalentCandidateService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -87,5 +89,14 @@ public class SysTalentCandidateController extends BaseController {
     @DeleteMapping("/{ids}")
     public AjaxResult remove(@PathVariable Long[] ids) {
         return toAjax(sysTalentCandidateService.deleteSysTalentCandidateByIds(ids));
+    }
+
+    /**
+     * 更新人才
+     */
+    @Log(title = "人才库", businessType = BusinessType.UPDATE)
+    @PutMapping("/resume")
+    public AjaxResult editResume(@Validated @RequestBody TalentCandidateResumeUpdateRequest request) {
+        return toAjax(sysTalentCandidateService.updateSysTalentCandidateResume(request));
     }
 }

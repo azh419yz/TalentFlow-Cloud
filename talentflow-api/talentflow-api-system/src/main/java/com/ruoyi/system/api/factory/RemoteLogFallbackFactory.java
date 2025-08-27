@@ -28,7 +28,7 @@ public class RemoteLogFallbackFactory implements FallbackFactory<RemoteLogServic
             }
 
             @Override
-            public R<Boolean> saveLogininfor(SysLoginInfo sysLoginInfo, String source) {
+            public R<Boolean> saveLoginInfo(SysLoginInfo sysLoginInfo, String source) {
                 return R.fail("保存登录日志失败:" + throwable.getMessage());
             }
         };

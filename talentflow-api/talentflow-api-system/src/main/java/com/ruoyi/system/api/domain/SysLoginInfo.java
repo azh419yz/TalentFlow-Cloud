@@ -11,7 +11,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * 系统访问记录表 sys_logininfor
+ * 系统访问记录表 sys_login_info
  *
  * @author kenmi
  */

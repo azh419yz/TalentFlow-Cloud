@@ -27,17 +27,17 @@ public class SysRecordLogService {
      * @param message  消息内容
      * @return
      */
-    public void recordLogininfor(String username, String status, String message) {
-        SysLoginInfo logininfor = new SysLoginInfo();
-        logininfor.setUserName(username);
-        logininfor.setIpaddr(IpUtils.getIpAddr());
-        logininfor.setMsg(message);
+    public void recordLoginInfo(String username, String status, String message) {
+        SysLoginInfo loginInfo = new SysLoginInfo();
+        loginInfo.setUserName(username);
+        loginInfo.setIpaddr(IpUtils.getIpAddr());
+        loginInfo.setMsg(message);
         // 日志状态
         if (StringUtils.equalsAny(status, Constants.LOGIN_SUCCESS, Constants.LOGOUT, Constants.REGISTER)) {
-            logininfor.setStatus(Constants.LOGIN_SUCCESS_STATUS);
+            loginInfo.setStatus(Constants.LOGIN_SUCCESS_STATUS);
         } else if (Constants.LOGIN_FAIL.equals(status)) {
-            logininfor.setStatus(Constants.LOGIN_FAIL_STATUS);
+            loginInfo.setStatus(Constants.LOGIN_FAIL_STATUS);
         }
-        remoteLogService.saveLogininfor(logininfor, SecurityConstants.INNER);
+        remoteLogService.saveLoginInfo(loginInfo, SecurityConstants.INNER);
     }
 }
