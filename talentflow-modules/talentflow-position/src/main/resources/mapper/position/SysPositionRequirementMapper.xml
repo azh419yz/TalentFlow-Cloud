@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.position.mapper.SysPositionRequirementMapper">
+
+    <resultMap type="SysPositionRequirement" id="SysPositionRequirementResult">
+        <result property="id" column="id"/>
+        <result property="positionId" column="position_id"/>
+        <result property="ageMin" column="age_min"/>
+        <result property="ageMax" column="age_max"/>
+        <result property="genderRequirement" column="gender_requirement"/>
+        <result property="languageRequirements" column="language_requirements"/>
+        <result property="certificateRequirements" column="certificate_requirements"/>
+        <result property="travelRequirement" column="travel_requirement"/>
+        <result property="overtimeAcceptable" column="overtime_acceptable"/>
+        <result property="preferredExperience" column="preferred_experience"/>
+        <result property="preferredSkills" column="preferred_skills"/>
+        <result property="preferredBackground" column="preferred_background"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateTime" column="update_time"/>
+    </resultMap>
+
+    <sql id="selectSysPositionRequirementVo">
+        select id,
+               position_id,
+               age_min,
+               age_max,
+               gender_requirement,
+               language_requirements,
+               certificate_requirements,
+               travel_requirement,
+               overtime_acceptable,
+               preferred_experience,
+               preferred_skills,
+               preferred_background,
+               create_time,
+               update_time
+        from sys_position_requirement
+    </sql>
+
+    <select id="selectSysPositionRequirementList" parameterType="SysPositionRequirement"
+            resultMap="SysPositionRequirementResult">
+        <include refid="selectSysPositionRequirementVo"/>
+        <where>
+            <if test="positionId != null ">and position_id = #{positionId}</if>
+            <if test="ageMin != null ">and age_min = #{ageMin}</if>
+            <if test="ageMax != null ">and age_max = #{ageMax}</if>
+            <if test="genderRequirement != null  and genderRequirement != ''">and gender_requirement =
+                #{genderRequirement}
+            </if>
+            <if test="languageRequirements != null  and languageRequirements != ''">and language_requirements =
+                #{languageRequirements}
+            </if>
+            <if test="certificateRequirements != null  and certificateRequirements != ''">and certificate_requirements =
+                #{certificateRequirements}
+            </if>
+            <if test="travelRequirement != null  and travelRequirement != ''">and travel_requirement =
+                #{travelRequirement}
+            </if>
+            <if test="overtimeAcceptable != null ">and overtime_acceptable = #{overtimeAcceptable}</if>
+            <if test="preferredExperience != null  and preferredExperience != ''">and preferred_experience =
+                #{preferredExperience}
+            </if>
+            <if test="preferredSkills != null  and preferredSkills != ''">and preferred_skills = #{preferredSkills}</if>
+            <if test="preferredBackground != null  and preferredBackground != ''">and preferred_background =
+                #{preferredBackground}
+            </if>
+        </where>
+    </select>
+
+    <select id="selectSysPositionRequirementById" parameterType="Long" resultMap="SysPositionRequirementResult">
+        <include refid="selectSysPositionRequirementVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSysPositionRequirement" parameterType="SysPositionRequirement" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into sys_position_requirement
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="positionId != null">position_id,</if>
+            <if test="ageMin != null">age_min,</if>
+            <if test="ageMax != null">age_max,</if>
+            <if test="genderRequirement != null">gender_requirement,</if>
+            <if test="languageRequirements != null">language_requirements,</if>
+            <if test="certificateRequirements != null">certificate_requirements,</if>
+            <if test="travelRequirement != null">travel_requirement,</if>
+            <if test="overtimeAcceptable != null">overtime_acceptable,</if>
+            <if test="preferredExperience != null">preferred_experience,</if>
+            <if test="preferredSkills != null">preferred_skills,</if>
+            <if test="preferredBackground != null">preferred_background,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateTime != null">update_time,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="positionId != null">#{positionId},</if>
+            <if test="ageMin != null">#{ageMin},</if>
+            <if test="ageMax != null">#{ageMax},</if>
+            <if test="genderRequirement != null">#{genderRequirement},</if>
+            <if test="languageRequirements != null">#{languageRequirements},</if>
+            <if test="certificateRequirements != null">#{certificateRequirements},</if>
+            <if test="travelRequirement != null">#{travelRequirement},</if>
+            <if test="overtimeAcceptable != null">#{overtimeAcceptable},</if>
+            <if test="preferredExperience != null">#{preferredExperience},</if>
+            <if test="preferredSkills != null">#{preferredSkills},</if>
+            <if test="preferredBackground != null">#{preferredBackground},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysPositionRequirement" parameterType="SysPositionRequirement">
+        update sys_position_requirement
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="positionId != null">position_id = #{positionId},</if>
+            <if test="ageMin != null">age_min = #{ageMin},</if>
+            <if test="ageMax != null">age_max = #{ageMax},</if>
+            <if test="genderRequirement != null">gender_requirement = #{genderRequirement},</if>
+            <if test="languageRequirements != null">language_requirements = #{languageRequirements},</if>
+            <if test="certificateRequirements != null">certificate_requirements = #{certificateRequirements},</if>
+            <if test="travelRequirement != null">travel_requirement = #{travelRequirement},</if>
+            <if test="overtimeAcceptable != null">overtime_acceptable = #{overtimeAcceptable},</if>
+            <if test="preferredExperience != null">preferred_experience = #{preferredExperience},</if>
+            <if test="preferredSkills != null">preferred_skills = #{preferredSkills},</if>
+            <if test="preferredBackground != null">preferred_background = #{preferredBackground},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysPositionRequirementById" parameterType="Long">
+        delete
+        from sys_position_requirement
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteSysPositionRequirementByIds" parameterType="String">
+        delete from sys_position_requirement where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

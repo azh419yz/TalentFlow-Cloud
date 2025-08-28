@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.interview.mapper.SysInterviewNodeDetailMapper">
+
+    <resultMap type="SysInterviewNodeDetail" id="SysInterviewNodeDetailResult">
+        <result property="id" column="id"/>
+        <result property="interviewId" column="interview_id"/>
+        <result property="nodeOrder" column="node_order"/>
+        <result property="nodeName" column="node_name"/>
+        <result property="nodeType" column="node_type"/>
+        <result property="nodeDescription" column="node_description"/>
+        <result property="interviewerId" column="interviewer_id"/>
+        <result property="interviewerName" column="interviewer_name"/>
+        <result property="scheduledDuration" column="scheduled_duration"/>
+        <result property="actualDuration" column="actual_duration"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="nodeStatus" column="node_status"/>
+        <result property="nodeResult" column="node_result"/>
+        <result property="overallScore" column="overall_score"/>
+        <result property="feedback" column="feedback"/>
+        <result property="strengths" column="strengths"/>
+        <result property="weaknesses" column="weaknesses"/>
+        <result property="recommendation" column="recommendation"/>
+        <result property="feedbackSubmittedTime" column="feedback_submitted_time"/>
+        <result property="createDept" column="create_dept"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectSysInterviewNodeDetailVo">
+        select id,
+               interview_id,
+               node_order,
+               node_name,
+               node_type,
+               node_description,
+               interviewer_id,
+               interviewer_name,
+               scheduled_duration,
+               actual_duration,
+               start_time,
+               end_time,
+               node_status,
+               node_result,
+               overall_score,
+               feedback,
+               strengths,
+               weaknesses,
+               recommendation,
+               feedback_submitted_time,
+               create_dept,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from sys_interview_node_detail
+    </sql>
+
+    <select id="selectSysInterviewNodeDetailList" parameterType="SysInterviewNodeDetail"
+            resultMap="SysInterviewNodeDetailResult">
+        <include refid="selectSysInterviewNodeDetailVo"/>
+        <where>
+            <if test="interviewId != null ">and interview_id = #{interviewId}</if>
+            <if test="nodeOrder != null ">and node_order = #{nodeOrder}</if>
+            <if test="nodeName != null  and nodeName != ''">and node_name like concat('%', #{nodeName}, '%')</if>
+            <if test="nodeType != null  and nodeType != ''">and node_type = #{nodeType}</if>
+            <if test="nodeDescription != null  and nodeDescription != ''">and node_description = #{nodeDescription}</if>
+            <if test="interviewerId != null ">and interviewer_id = #{interviewerId}</if>
+            <if test="interviewerName != null  and interviewerName != ''">and interviewer_name like concat('%',
+                #{interviewerName}, '%')
+            </if>
+            <if test="scheduledDuration != null ">and scheduled_duration = #{scheduledDuration}</if>
+            <if test="actualDuration != null ">and actual_duration = #{actualDuration}</if>
+            <if test="startTime != null ">and start_time = #{startTime}</if>
+            <if test="endTime != null ">and end_time = #{endTime}</if>
+            <if test="nodeStatus != null  and nodeStatus != ''">and node_status = #{nodeStatus}</if>
+            <if test="nodeResult != null  and nodeResult != ''">and node_result = #{nodeResult}</if>
+            <if test="overallScore != null ">and overall_score = #{overallScore}</if>
+            <if test="feedback != null  and feedback != ''">and feedback = #{feedback}</if>
+            <if test="strengths != null  and strengths != ''">and strengths = #{strengths}</if>
+            <if test="weaknesses != null  and weaknesses != ''">and weaknesses = #{weaknesses}</if>
+            <if test="recommendation != null  and recommendation != ''">and recommendation = #{recommendation}</if>
+            <if test="feedbackSubmittedTime != null ">and feedback_submitted_time = #{feedbackSubmittedTime}</if>
+            <if test="createDept != null ">and create_dept = #{createDept}</if>
+        </where>
+    </select>
+
+    <select id="selectSysInterviewNodeDetailById" parameterType="Long" resultMap="SysInterviewNodeDetailResult">
+        <include refid="selectSysInterviewNodeDetailVo"/>
+        where id = #{id}
+    </select>
+
+    <insert id="insertSysInterviewNodeDetail" parameterType="SysInterviewNodeDetail" useGeneratedKeys="true"
+            keyProperty="id">
+        insert into sys_interview_node_detail
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="interviewId != null">interview_id,</if>
+            <if test="nodeOrder != null">node_order,</if>
+            <if test="nodeName != null and nodeName != ''">node_name,</if>
+            <if test="nodeType != null">node_type,</if>
+            <if test="nodeDescription != null">node_description,</if>
+            <if test="interviewerId != null">interviewer_id,</if>
+            <if test="interviewerName != null">interviewer_name,</if>
+            <if test="scheduledDuration != null">scheduled_duration,</if>
+            <if test="actualDuration != null">actual_duration,</if>
+            <if test="startTime != null">start_time,</if>
+            <if test="endTime != null">end_time,</if>
+            <if test="nodeStatus != null">node_status,</if>
+            <if test="nodeResult != null">node_result,</if>
+            <if test="overallScore != null">overall_score,</if>
+            <if test="feedback != null">feedback,</if>
+            <if test="strengths != null">strengths,</if>
+            <if test="weaknesses != null">weaknesses,</if>
+            <if test="recommendation != null">recommendation,</if>
+            <if test="feedbackSubmittedTime != null">feedback_submitted_time,</if>
+            <if test="createDept != null">create_dept,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="interviewId != null">#{interviewId},</if>
+            <if test="nodeOrder != null">#{nodeOrder},</if>
+            <if test="nodeName != null and nodeName != ''">#{nodeName},</if>
+            <if test="nodeType != null">#{nodeType},</if>
+            <if test="nodeDescription != null">#{nodeDescription},</if>
+            <if test="interviewerId != null">#{interviewerId},</if>
+            <if test="interviewerName != null">#{interviewerName},</if>
+            <if test="scheduledDuration != null">#{scheduledDuration},</if>
+            <if test="actualDuration != null">#{actualDuration},</if>
+            <if test="startTime != null">#{startTime},</if>
+            <if test="endTime != null">#{endTime},</if>
+            <if test="nodeStatus != null">#{nodeStatus},</if>
+            <if test="nodeResult != null">#{nodeResult},</if>
+            <if test="overallScore != null">#{overallScore},</if>
+            <if test="feedback != null">#{feedback},</if>
+            <if test="strengths != null">#{strengths},</if>
+            <if test="weaknesses != null">#{weaknesses},</if>
+            <if test="recommendation != null">#{recommendation},</if>
+            <if test="feedbackSubmittedTime != null">#{feedbackSubmittedTime},</if>
+            <if test="createDept != null">#{createDept},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysInterviewNodeDetail" parameterType="SysInterviewNodeDetail">
+        update sys_interview_node_detail
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="interviewId != null">interview_id = #{interviewId},</if>
+            <if test="nodeOrder != null">node_order = #{nodeOrder},</if>
+            <if test="nodeName != null and nodeName != ''">node_name = #{nodeName},</if>
+            <if test="nodeType != null">node_type = #{nodeType},</if>
+            <if test="nodeDescription != null">node_description = #{nodeDescription},</if>
+            <if test="interviewerId != null">interviewer_id = #{interviewerId},</if>
+            <if test="interviewerName != null">interviewer_name = #{interviewerName},</if>
+            <if test="scheduledDuration != null">scheduled_duration = #{scheduledDuration},</if>
+            <if test="actualDuration != null">actual_duration = #{actualDuration},</if>
+            <if test="startTime != null">start_time = #{startTime},</if>
+            <if test="endTime != null">end_time = #{endTime},</if>
+            <if test="nodeStatus != null">node_status = #{nodeStatus},</if>
+            <if test="nodeResult != null">node_result = #{nodeResult},</if>
+            <if test="overallScore != null">overall_score = #{overallScore},</if>
+            <if test="feedback != null">feedback = #{feedback},</if>
+            <if test="strengths != null">strengths = #{strengths},</if>
+            <if test="weaknesses != null">weaknesses = #{weaknesses},</if>
+            <if test="recommendation != null">recommendation = #{recommendation},</if>
+            <if test="feedbackSubmittedTime != null">feedback_submitted_time = #{feedbackSubmittedTime},</if>
+            <if test="createDept != null">create_dept = #{createDept},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysInterviewNodeDetailById" parameterType="Long">
+        delete
+        from sys_interview_node_detail
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteSysInterviewNodeDetailByIds" parameterType="String">
+        delete from sys_interview_node_detail where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>

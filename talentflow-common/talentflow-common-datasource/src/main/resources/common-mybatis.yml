@@ -7,7 +7,7 @@ mybatis-plus:
   # Mapper扫描包路径
   mapperPackage: com.ruoyi.**.mapper
   # 搜索指定包别名 - 精确指定业务包，避免扫描common模块造成冲突
-  typeAliasesPackage: com.ruoyi.system,com.ruoyi.gen,com.ruoyi.job,com.ruoyi.file
+  typeAliasesPackage: com.ruoyi.system,com.ruoyi.gen,com.ruoyi.job,com.ruoyi.file,com.ruoyi.talent,com.ruoyi.position,com.ruoyi.interview
   # 配置mapper的扫描，找到所有的mapper.xml映射文件
   mapperLocations: classpath:mapper/**/*.xml
   configuration:

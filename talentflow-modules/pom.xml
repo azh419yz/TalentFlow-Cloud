@@ -13,6 +13,9 @@
         <module>talentflow-gen</module>
         <module>talentflow-job</module>
         <module>talentflow-file</module>
+        <module>talentflow-talent</module>
+        <module>talentflow-position</module>
+        <module>talentflow-interview</module>
     </modules>
 
     <artifactId>talentflow-modules</artifactId>

@@ -1,0 +1,308 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.interview.mapper.SysInterviewRecordMapper">
+
+    <resultMap type="SysInterviewRecord" id="SysInterviewRecordResult">
+        <result property="id" column="id"/>
+        <result property="candidateId" column="candidate_id"/>
+        <result property="positionId" column="position_id"/>
+        <result property="applicationId" column="application_id"/>
+        <result property="interviewCode" column="interview_code"/>
+        <result property="interviewTitle" column="interview_title"/>
+        <result property="scheduledStartTime" column="scheduled_start_time"/>
+        <result property="scheduledEndTime" column="scheduled_end_time"/>
+        <result property="actualStartTime" column="actual_start_time"/>
+        <result property="actualEndTime" column="actual_end_time"/>
+        <result property="interviewMode" column="interview_mode"/>
+        <result property="location" column="location"/>
+        <result property="onlineMeetingUrl" column="online_meeting_url"/>
+        <result property="currentStage" column="current_stage"/>
+        <result property="overallStatus" column="overall_status"/>
+        <result property="overallResult" column="overall_result"/>
+        <result property="finalDecision" column="final_decision"/>
+        <result property="decisionReason" column="decision_reason"/>
+        <result property="createDept" column="create_dept"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <resultMap id="SysInterviewRecordSysInterviewNodeDetailResult" type="SysInterviewRecord"
+               extends="SysInterviewRecordResult">
+        <collection property="sysInterviewNodeDetailList" ofType="SysInterviewNodeDetail" column="id"
+                    select="selectSysInterviewNodeDetailList"/>
+    </resultMap>
+
+    <resultMap type="SysInterviewNodeDetail" id="SysInterviewNodeDetailResult">
+        <result property="id" column="id"/>
+        <result property="interviewId" column="interview_id"/>
+        <result property="nodeOrder" column="node_order"/>
+        <result property="nodeName" column="node_name"/>
+        <result property="nodeType" column="node_type"/>
+        <result property="nodeDescription" column="node_description"/>
+        <result property="interviewerId" column="interviewer_id"/>
+        <result property="interviewerName" column="interviewer_name"/>
+        <result property="scheduledDuration" column="scheduled_duration"/>
+        <result property="actualDuration" column="actual_duration"/>
+        <result property="startTime" column="start_time"/>
+        <result property="endTime" column="end_time"/>
+        <result property="nodeStatus" column="node_status"/>
+        <result property="nodeResult" column="node_result"/>
+        <result property="overallScore" column="overall_score"/>
+        <result property="feedback" column="feedback"/>
+        <result property="strengths" column="strengths"/>
+        <result property="weaknesses" column="weaknesses"/>
+        <result property="recommendation" column="recommendation"/>
+        <result property="feedbackSubmittedTime" column="feedback_submitted_time"/>
+        <result property="createDept" column="create_dept"/>
+        <result property="createBy" column="create_by"/>
+        <result property="createTime" column="create_time"/>
+        <result property="updateBy" column="update_by"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="remark" column="remark"/>
+    </resultMap>
+
+    <sql id="selectSysInterviewRecordVo">
+        select id,
+               candidate_id,
+               position_id,
+               application_id,
+               interview_code,
+               interview_title,
+               scheduled_start_time,
+               scheduled_end_time,
+               actual_start_time,
+               actual_end_time,
+               interview_mode,
+               location,
+               online_meeting_url,
+               current_stage,
+               overall_status,
+               overall_result,
+               final_decision,
+               decision_reason,
+               create_dept,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from sys_interview_record
+    </sql>
+
+    <select id="selectSysInterviewRecordList" parameterType="SysInterviewRecord" resultMap="SysInterviewRecordResult">
+        <include refid="selectSysInterviewRecordVo"/>
+        <where>
+            <if test="candidateId != null ">and candidate_id = #{candidateId}</if>
+            <if test="positionId != null ">and position_id = #{positionId}</if>
+            <if test="applicationId != null ">and application_id = #{applicationId}</if>
+            <if test="interviewCode != null  and interviewCode != ''">and interview_code = #{interviewCode}</if>
+            <if test="interviewTitle != null  and interviewTitle != ''">and interview_title = #{interviewTitle}</if>
+            <if test="scheduledStartTime != null ">and scheduled_start_time = #{scheduledStartTime}</if>
+            <if test="scheduledEndTime != null ">and scheduled_end_time = #{scheduledEndTime}</if>
+            <if test="actualStartTime != null ">and actual_start_time = #{actualStartTime}</if>
+            <if test="actualEndTime != null ">and actual_end_time = #{actualEndTime}</if>
+            <if test="interviewMode != null  and interviewMode != ''">and interview_mode = #{interviewMode}</if>
+            <if test="location != null  and location != ''">and location = #{location}</if>
+            <if test="onlineMeetingUrl != null  and onlineMeetingUrl != ''">and online_meeting_url =
+                #{onlineMeetingUrl}
+            </if>
+            <if test="currentStage != null  and currentStage != ''">and current_stage = #{currentStage}</if>
+            <if test="overallStatus != null  and overallStatus != ''">and overall_status = #{overallStatus}</if>
+            <if test="overallResult != null  and overallResult != ''">and overall_result = #{overallResult}</if>
+            <if test="finalDecision != null  and finalDecision != ''">and final_decision = #{finalDecision}</if>
+            <if test="decisionReason != null  and decisionReason != ''">and decision_reason = #{decisionReason}</if>
+            <if test="createDept != null ">and create_dept = #{createDept}</if>
+        </where>
+    </select>
+
+    <select id="selectSysInterviewRecordById" parameterType="Long"
+            resultMap="SysInterviewRecordSysInterviewNodeDetailResult">
+        select id,
+               candidate_id,
+               position_id,
+               application_id,
+               interview_code,
+               interview_title,
+               scheduled_start_time,
+               scheduled_end_time,
+               actual_start_time,
+               actual_end_time,
+               interview_mode,
+               location,
+               online_meeting_url,
+               current_stage,
+               overall_status,
+               overall_result,
+               final_decision,
+               decision_reason,
+               create_dept,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from sys_interview_record
+        where id = #{id}
+    </select>
+
+    <select id="selectSysInterviewNodeDetailList" resultMap="SysInterviewNodeDetailResult">
+        select id,
+               interview_id,
+               node_order,
+               node_name,
+               node_type,
+               node_description,
+               interviewer_id,
+               interviewer_name,
+               scheduled_duration,
+               actual_duration,
+               start_time,
+               end_time,
+               node_status,
+               node_result,
+               overall_score,
+               feedback,
+               strengths,
+               weaknesses,
+               recommendation,
+               feedback_submitted_time,
+               create_dept,
+               create_by,
+               create_time,
+               update_by,
+               update_time,
+               remark
+        from sys_interview_node_detail
+        where interview_id = #{interview_id}
+    </select>
+
+    <insert id="insertSysInterviewRecord" parameterType="SysInterviewRecord" useGeneratedKeys="true" keyProperty="id">
+        insert into sys_interview_record
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="candidateId != null">candidate_id,</if>
+            <if test="positionId != null">position_id,</if>
+            <if test="applicationId != null">application_id,</if>
+            <if test="interviewCode != null">interview_code,</if>
+            <if test="interviewTitle != null">interview_title,</if>
+            <if test="scheduledStartTime != null">scheduled_start_time,</if>
+            <if test="scheduledEndTime != null">scheduled_end_time,</if>
+            <if test="actualStartTime != null">actual_start_time,</if>
+            <if test="actualEndTime != null">actual_end_time,</if>
+            <if test="interviewMode != null">interview_mode,</if>
+            <if test="location != null">location,</if>
+            <if test="onlineMeetingUrl != null">online_meeting_url,</if>
+            <if test="currentStage != null">current_stage,</if>
+            <if test="overallStatus != null">overall_status,</if>
+            <if test="overallResult != null">overall_result,</if>
+            <if test="finalDecision != null">final_decision,</if>
+            <if test="decisionReason != null">decision_reason,</if>
+            <if test="createDept != null">create_dept,</if>
+            <if test="createBy != null">create_by,</if>
+            <if test="createTime != null">create_time,</if>
+            <if test="updateBy != null">update_by,</if>
+            <if test="updateTime != null">update_time,</if>
+            <if test="remark != null">remark,</if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="candidateId != null">#{candidateId},</if>
+            <if test="positionId != null">#{positionId},</if>
+            <if test="applicationId != null">#{applicationId},</if>
+            <if test="interviewCode != null">#{interviewCode},</if>
+            <if test="interviewTitle != null">#{interviewTitle},</if>
+            <if test="scheduledStartTime != null">#{scheduledStartTime},</if>
+            <if test="scheduledEndTime != null">#{scheduledEndTime},</if>
+            <if test="actualStartTime != null">#{actualStartTime},</if>
+            <if test="actualEndTime != null">#{actualEndTime},</if>
+            <if test="interviewMode != null">#{interviewMode},</if>
+            <if test="location != null">#{location},</if>
+            <if test="onlineMeetingUrl != null">#{onlineMeetingUrl},</if>
+            <if test="currentStage != null">#{currentStage},</if>
+            <if test="overallStatus != null">#{overallStatus},</if>
+            <if test="overallResult != null">#{overallResult},</if>
+            <if test="finalDecision != null">#{finalDecision},</if>
+            <if test="decisionReason != null">#{decisionReason},</if>
+            <if test="createDept != null">#{createDept},</if>
+            <if test="createBy != null">#{createBy},</if>
+            <if test="createTime != null">#{createTime},</if>
+            <if test="updateBy != null">#{updateBy},</if>
+            <if test="updateTime != null">#{updateTime},</if>
+            <if test="remark != null">#{remark},</if>
+        </trim>
+    </insert>
+
+    <update id="updateSysInterviewRecord" parameterType="SysInterviewRecord">
+        update sys_interview_record
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="candidateId != null">candidate_id = #{candidateId},</if>
+            <if test="positionId != null">position_id = #{positionId},</if>
+            <if test="applicationId != null">application_id = #{applicationId},</if>
+            <if test="interviewCode != null">interview_code = #{interviewCode},</if>
+            <if test="interviewTitle != null">interview_title = #{interviewTitle},</if>
+            <if test="scheduledStartTime != null">scheduled_start_time = #{scheduledStartTime},</if>
+            <if test="scheduledEndTime != null">scheduled_end_time = #{scheduledEndTime},</if>
+            <if test="actualStartTime != null">actual_start_time = #{actualStartTime},</if>
+            <if test="actualEndTime != null">actual_end_time = #{actualEndTime},</if>
+            <if test="interviewMode != null">interview_mode = #{interviewMode},</if>
+            <if test="location != null">location = #{location},</if>
+            <if test="onlineMeetingUrl != null">online_meeting_url = #{onlineMeetingUrl},</if>
+            <if test="currentStage != null">current_stage = #{currentStage},</if>
+            <if test="overallStatus != null">overall_status = #{overallStatus},</if>
+            <if test="overallResult != null">overall_result = #{overallResult},</if>
+            <if test="finalDecision != null">final_decision = #{finalDecision},</if>
+            <if test="decisionReason != null">decision_reason = #{decisionReason},</if>
+            <if test="createDept != null">create_dept = #{createDept},</if>
+            <if test="createBy != null">create_by = #{createBy},</if>
+            <if test="createTime != null">create_time = #{createTime},</if>
+            <if test="updateBy != null">update_by = #{updateBy},</if>
+            <if test="updateTime != null">update_time = #{updateTime},</if>
+            <if test="remark != null">remark = #{remark},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteSysInterviewRecordById" parameterType="Long">
+        delete
+        from sys_interview_record
+        where id = #{id}
+    </delete>
+
+    <delete id="deleteSysInterviewRecordByIds" parameterType="String">
+        delete from sys_interview_record where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <delete id="deleteSysInterviewNodeDetailByInterviewIds" parameterType="String">
+        delete from sys_interview_node_detail where interview_id in
+        <foreach item="interviewId" collection="array" open="(" separator="," close=")">
+            #{interviewId}
+        </foreach>
+    </delete>
+
+    <delete id="deleteSysInterviewNodeDetailByInterviewId" parameterType="Long">
+        delete
+        from sys_interview_node_detail
+        where interview_id = #{interviewId}
+    </delete>
+
+    <insert id="batchSysInterviewNodeDetail">
+        insert into sys_interview_node_detail( id, interview_id, node_order, node_name, node_type, node_description,
+        interviewer_id, interviewer_name, scheduled_duration, actual_duration, start_time, end_time, node_status,
+        node_result, overall_score, feedback, strengths, weaknesses, recommendation, feedback_submitted_time,
+        create_dept, create_by, create_time, update_by, update_time, remark) values
+        <foreach item="item" index="index" collection="list" separator=",">
+            ( #{item.id}, #{item.interviewId}, #{item.nodeOrder}, #{item.nodeName}, #{item.nodeType},
+            #{item.nodeDescription}, #{item.interviewerId}, #{item.interviewerName}, #{item.scheduledDuration},
+            #{item.actualDuration}, #{item.startTime}, #{item.endTime}, #{item.nodeStatus}, #{item.nodeResult},
+            #{item.overallScore}, #{item.feedback}, #{item.strengths}, #{item.weaknesses}, #{item.recommendation},
+            #{item.feedbackSubmittedTime}, #{item.createDept}, #{item.createBy}, #{item.createTime}, #{item.updateBy},
+            #{item.updateTime}, #{item.remark})
+        </foreach>
+    </insert>
+</mapper>
