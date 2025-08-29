@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ruoyi.common.core.utils.DateUtils;
 import com.ruoyi.common.core.utils.MapstructUtils;
 import com.ruoyi.talent.domain.SysTalentPost;
-import com.ruoyi.talent.domain.vo.TalentPostVo;
+import com.ruoyi.talent.domain.vo.SysTalentPostVo;
 import com.ruoyi.talent.mapper.SysTalentPostMapper;
 import com.ruoyi.talent.service.ISysTalentPostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -95,23 +95,23 @@ public class SysTalentPostServiceImpl implements ISysTalentPostService {
     }
 
     @Override
-    public List<TalentPostVo> selectAllPosts() {
+    public List<SysTalentPostVo> selectAllPosts() {
         // 获取职位分类
-        List<TalentPostVo> categoryList = listPosts(0L, "category");
-        List<Long> categoryIds = categoryList.stream().map(TalentPostVo::getId).toList();
+        List<SysTalentPostVo> categoryList = listPosts(0L, "category");
+        List<Long> categoryIds = categoryList.stream().map(SysTalentPostVo::getId).toList();
 
         // 获取groups
-        List<TalentPostVo> groupList = listPosts(categoryIds, "group");
+        List<SysTalentPostVo> groupList = listPosts(categoryIds, "group");
         // 按分类id分组
-        Map<Long, List<TalentPostVo>> groupMap = groupList.stream()
-                .collect(Collectors.groupingBy(TalentPostVo::getParentId));
+        Map<Long, List<SysTalentPostVo>> groupMap = groupList.stream()
+                .collect(Collectors.groupingBy(SysTalentPostVo::getParentId));
 
-        List<Long> groupIds = groupList.stream().map(TalentPostVo::getId).toList();
+        List<Long> groupIds = groupList.stream().map(SysTalentPostVo::getId).toList();
         // 获取posts
-        List<TalentPostVo> postList = listPosts(groupIds, "post");
+        List<SysTalentPostVo> postList = listPosts(groupIds, "post");
         // 按group id分组
-        Map<Long, List<TalentPostVo>> postMap = postList.stream()
-                .collect(Collectors.groupingBy(TalentPostVo::getParentId));
+        Map<Long, List<SysTalentPostVo>> postMap = postList.stream()
+                .collect(Collectors.groupingBy(SysTalentPostVo::getParentId));
 
         // 设置posts
         groupList.forEach(group ->
@@ -124,19 +124,19 @@ public class SysTalentPostServiceImpl implements ISysTalentPostService {
         return categoryList;
     }
 
-    private List<TalentPostVo> listPosts(Long parentId, String type) {
+    private List<SysTalentPostVo> listPosts(Long parentId, String type) {
         return sysTalentPostMapper.selectList(new LambdaQueryWrapper<SysTalentPost>()
                         .eq(SysTalentPost::getParentId, parentId)
                         .eq(SysTalentPost::getType, type))
                 .stream()
-                .map(post -> MapstructUtils.convert(post, TalentPostVo.class)).toList();
+                .map(post -> MapstructUtils.convert(post, SysTalentPostVo.class)).toList();
     }
 
-    private List<TalentPostVo> listPosts(List<Long> parentIds, String type) {
+    private List<SysTalentPostVo> listPosts(List<Long> parentIds, String type) {
         return sysTalentPostMapper.selectList(new LambdaQueryWrapper<SysTalentPost>()
                         .in(SysTalentPost::getParentId, parentIds)
                         .eq(SysTalentPost::getType, type))
                 .stream()
-                .map(post -> MapstructUtils.convert(post, TalentPostVo.class)).toList();
+                .map(post -> MapstructUtils.convert(post, SysTalentPostVo.class)).toList();
     }
 }

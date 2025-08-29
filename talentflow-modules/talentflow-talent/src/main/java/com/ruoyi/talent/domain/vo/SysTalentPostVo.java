@@ -13,8 +13,7 @@ import java.util.List;
  * @date 2025-08-17
  */
 @Data
-@AutoMapper(target = SysTalentPost.class)
-public class TalentPostVo {
+public class SysTalentPostVo {
 
     /**
      * 职位id
@@ -31,7 +30,7 @@ public class TalentPostVo {
      */
     private Long parentId;
 
-    private List<TalentPostVo> groups;
+    private List<SysTalentPostVo> groups;
 
-    private List<TalentPostVo> posts;
+    private List<SysTalentPostVo> posts;
 }

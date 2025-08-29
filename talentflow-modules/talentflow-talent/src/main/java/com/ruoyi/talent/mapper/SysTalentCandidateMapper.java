@@ -1,11 +1,10 @@
 package com.ruoyi.talent.mapper;
 
 import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.baomidou.mybatisplus.core.toolkit.Constants;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.ruoyi.common.datasource.core.mapper.BaseMapperPlus;
 import com.ruoyi.talent.domain.SysTalentCandidate;
-import com.ruoyi.talent.domain.vo.TalentCandidateVo;
 import org.apache.ibatis.annotations.Param;
 
 /**
@@ -14,6 +13,6 @@ import org.apache.ibatis.annotations.Param;
  * @author ruoyi
  * @date 2025-08-15
  */
-public interface SysTalentCandidateMapper extends BaseMapperPlus<SysTalentCandidate, TalentCandidateVo> {
-    Page<TalentCandidateVo> selectPageTalentCandidateList(@Param("page") Page<SysTalentCandidate> page, @Param(Constants.WRAPPER) Wrapper<SysTalentCandidate> queryWrapper);
+public interface SysTalentCandidateMapper extends BaseMapper<SysTalentCandidate> {
+    Page<SysTalentCandidate> selectPageTalentCandidateList(@Param("page") Page<SysTalentCandidate> page, @Param(Constants.WRAPPER) Wrapper<SysTalentCandidate> queryWrapper);
 }

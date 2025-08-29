@@ -1,7 +1,7 @@
 package com.ruoyi.talent.service;
 
 import com.ruoyi.talent.domain.SysTalentIndustry;
-import com.ruoyi.talent.domain.vo.TalentIndustryVo;
+import com.ruoyi.talent.domain.vo.SysTalentIndustryVo;
 
 import java.util.List;
 
@@ -60,5 +60,5 @@ public interface ISysTalentIndustryService {
      */
     int deleteSysTalentIndustryById(Long id);
 
-    List<TalentIndustryVo> selectAllIndustries();
+    List<SysTalentIndustryVo> selectAllIndustries();
 }

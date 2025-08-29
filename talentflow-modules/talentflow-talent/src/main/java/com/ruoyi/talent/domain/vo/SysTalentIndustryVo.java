@@ -13,8 +13,7 @@ import java.util.List;
  * @date 2025-08-17
  */
 @Data
-@AutoMapper(target = SysTalentIndustry.class)
-public class TalentIndustryVo {
+public class SysTalentIndustryVo {
 
     /**
      * 职位id
@@ -31,5 +30,5 @@ public class TalentIndustryVo {
      */
     private Long parentId;
 
-    private List<TalentIndustryVo> industries;
+    private List<SysTalentIndustryVo> industries;
 }

@@ -8,9 +8,9 @@ import com.ruoyi.common.core.web.page.TableDataInfo;
 import com.ruoyi.common.log.annotation.Log;
 import com.ruoyi.common.log.enums.BusinessType;
 import com.ruoyi.common.security.annotation.RequiresPermissions;
-import com.ruoyi.talent.domain.bo.TalentCandidateBo;
+import com.ruoyi.talent.domain.SysTalentCandidate;
+import com.ruoyi.talent.domain.bo.SysTalentCandidateBo;
 import com.ruoyi.talent.domain.request.TalentCandidateResumeUpdateRequest;
-import com.ruoyi.talent.domain.vo.TalentCandidateVo;
 import com.ruoyi.talent.service.ISysTalentCandidateService;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +36,8 @@ public class SysTalentCandidateController extends BaseController {
      */
     @RequiresPermissions("system:candidate:list")
     @GetMapping("/list")
-    public TableDataInfo<TalentCandidateVo> list(TalentCandidateBo talentCandidateBo, PageQuery pageQuery) {
-        return sysTalentCandidateService.selectPageTalentCandidateList(talentCandidateBo, pageQuery);
+    public TableDataInfo<SysTalentCandidate> list(SysTalentCandidateBo sysTalentCandidateBo, PageQuery pageQuery) {
+        return sysTalentCandidateService.selectPageTalentCandidateList(sysTalentCandidateBo, pageQuery);
     }
 
     /**
@@ -46,9 +46,9 @@ public class SysTalentCandidateController extends BaseController {
     @RequiresPermissions("system:candidate:export")
     @Log(title = "人才库", businessType = BusinessType.EXPORT)
     @PostMapping("/export")
-    public void export(TalentCandidateBo talentCandidateBo, HttpServletResponse response) {
-        List<TalentCandidateVo> list = sysTalentCandidateService.selectTalentCandidateList(talentCandidateBo);
-        ExcelUtil<TalentCandidateVo> util = new ExcelUtil<>(TalentCandidateVo.class);
+    public void export(SysTalentCandidateBo sysTalentCandidateBo, HttpServletResponse response) {
+        List<SysTalentCandidate> list = sysTalentCandidateService.selectTalentCandidateList(sysTalentCandidateBo);
+        ExcelUtil<SysTalentCandidate> util = new ExcelUtil<>(SysTalentCandidate.class);
         util.exportExcel(response, list, "人才库数据");
     }
 
@@ -67,7 +67,7 @@ public class SysTalentCandidateController extends BaseController {
     @RequiresPermissions("system:candidate:add")
     @Log(title = "人才库", businessType = BusinessType.INSERT)
     @PostMapping
-    public AjaxResult add(@RequestBody TalentCandidateBo sysTalentCandidateBo) {
+    public AjaxResult add(@RequestBody SysTalentCandidateBo sysTalentCandidateBo) {
         return toAjax(sysTalentCandidateService.insertSysTalentCandidate(sysTalentCandidateBo));
     }
 
@@ -77,7 +77,7 @@ public class SysTalentCandidateController extends BaseController {
     @RequiresPermissions("system:candidate:edit")
     @Log(title = "人才库", businessType = BusinessType.UPDATE)
     @PutMapping
-    public AjaxResult edit(@RequestBody TalentCandidateBo sysTalentCandidateBo) {
+    public AjaxResult edit(@RequestBody SysTalentCandidateBo sysTalentCandidateBo) {
         return toAjax(sysTalentCandidateService.updateSysTalentCandidate(sysTalentCandidateBo));
     }
 

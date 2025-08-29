@@ -4,7 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.ruoyi.common.core.utils.DateUtils;
 import com.ruoyi.common.core.utils.MapstructUtils;
 import com.ruoyi.talent.domain.SysTalentIndustry;
-import com.ruoyi.talent.domain.vo.TalentIndustryVo;
+import com.ruoyi.talent.domain.vo.SysTalentIndustryVo;
 import com.ruoyi.talent.mapper.SysTalentIndustryMapper;
 import com.ruoyi.talent.service.ISysTalentIndustryService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -94,24 +94,24 @@ public class SysTalentIndustryServiceImpl implements ISysTalentIndustryService {
     }
 
     @Override
-    public List<TalentIndustryVo> selectAllIndustries() {
+    public List<SysTalentIndustryVo> selectAllIndustries() {
         // 获取行业分类
-        List<TalentIndustryVo> categoryList = sysTalentIndustryMapper.selectList(new LambdaQueryWrapper<SysTalentIndustry>()
+        List<SysTalentIndustryVo> categoryList = sysTalentIndustryMapper.selectList(new LambdaQueryWrapper<SysTalentIndustry>()
                         .eq(SysTalentIndustry::getParentId, 0L)
                         .eq(SysTalentIndustry::getType, "category"))
                 .stream()
-                .map(industry -> MapstructUtils.convert(industry, TalentIndustryVo.class)).toList();
-        List<Long> categoryIds = categoryList.stream().map(TalentIndustryVo::getId).toList();
+                .map(industry -> MapstructUtils.convert(industry, SysTalentIndustryVo.class)).toList();
+        List<Long> categoryIds = categoryList.stream().map(SysTalentIndustryVo::getId).toList();
 
         // 获取industry
-        List<TalentIndustryVo> industryList = sysTalentIndustryMapper.selectList(new LambdaQueryWrapper<SysTalentIndustry>()
+        List<SysTalentIndustryVo> industryList = sysTalentIndustryMapper.selectList(new LambdaQueryWrapper<SysTalentIndustry>()
                         .in(SysTalentIndustry::getParentId, categoryIds)
                         .eq(SysTalentIndustry::getType, "industry"))
                 .stream()
-                .map(industry -> MapstructUtils.convert(industry, TalentIndustryVo.class)).toList();
+                .map(industry -> MapstructUtils.convert(industry, SysTalentIndustryVo.class)).toList();
         // 按分类id分组
-        Map<Long, List<TalentIndustryVo>> industryMap = industryList.stream()
-                .collect(Collectors.groupingBy(TalentIndustryVo::getParentId));
+        Map<Long, List<SysTalentIndustryVo>> industryMap = industryList.stream()
+                .collect(Collectors.groupingBy(SysTalentIndustryVo::getParentId));
 
         // 设置industries
         categoryList.forEach(category ->

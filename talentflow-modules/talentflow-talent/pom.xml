@@ -71,6 +71,12 @@
             <artifactId>talentflow-common-swagger</artifactId>
         </dependency>
 
+        <!-- RuoYi Common Ai -->
+        <dependency>
+            <groupId>com.ruoyi</groupId>
+            <artifactId>talentflow-common-ai</artifactId>
+        </dependency>
+
     </dependencies>
 
     <build>

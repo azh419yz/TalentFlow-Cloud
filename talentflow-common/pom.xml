@@ -18,6 +18,7 @@
         <module>talentflow-common-sensitive</module>
         <module>talentflow-common-datascope</module>
         <module>talentflow-common-datasource</module>
+        <module>talentflow-common-ai</module>
     </modules>
 
     <artifactId>talentflow-common</artifactId>

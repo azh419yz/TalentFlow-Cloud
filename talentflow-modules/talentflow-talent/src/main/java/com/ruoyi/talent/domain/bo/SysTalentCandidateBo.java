@@ -1,8 +1,7 @@
 package com.ruoyi.talent.domain.bo;
 
+
 import com.ruoyi.common.core.web.domain.BaseEntity;
-import com.ruoyi.talent.domain.SysTalentCandidate;
-import io.github.linpeilie.annotations.AutoMapper;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
@@ -17,8 +16,7 @@ import java.util.List;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-@AutoMapper(target = SysTalentCandidate.class, reverseConvertGenerate = false)
-public class TalentCandidateBo extends BaseEntity {
+public class SysTalentCandidateBo extends BaseEntity {
     @Serial
     private static final long serialVersionUID = 1L;
 

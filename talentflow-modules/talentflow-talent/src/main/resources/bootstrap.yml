@@ -4,6 +4,22 @@ server:
 
 # Spring
 spring:
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        model: qwen3:8b
+      embedding:
+        model: mxbai-embed-large:335m
+    vectorstore:
+      chroma:
+        client:
+          host: http://localhost
+          port: 8000
+        tenant-name: my_docs
+        database-name: my_db
+        collection-name: my_col
+        initialize-schema: true
   application:
     # 应用名称
     name: talentflow-talent

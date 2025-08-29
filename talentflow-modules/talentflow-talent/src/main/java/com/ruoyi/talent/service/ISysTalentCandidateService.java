@@ -2,9 +2,9 @@ package com.ruoyi.talent.service;
 
 import com.ruoyi.common.core.web.page.PageQuery;
 import com.ruoyi.common.core.web.page.TableDataInfo;
-import com.ruoyi.talent.domain.bo.TalentCandidateBo;
+import com.ruoyi.talent.domain.SysTalentCandidate;
+import com.ruoyi.talent.domain.bo.SysTalentCandidateBo;
 import com.ruoyi.talent.domain.request.TalentCandidateResumeUpdateRequest;
-import com.ruoyi.talent.domain.vo.TalentCandidateVo;
 
 import java.util.List;
 
@@ -21,33 +21,33 @@ public interface ISysTalentCandidateService {
      * @param id 人才库主键
      * @return 人才库
      */
-    TalentCandidateVo selectSysTalentCandidateById(Long id);
+    SysTalentCandidate selectSysTalentCandidateById(Long id);
 
     /**
      * 查询人才库列表
      *
-     * @param talentCandidateBo 人才库
+     * @param sysTalentCandidateBo 人才库
      * @return 人才库集合
      */
-    TableDataInfo<TalentCandidateVo> selectPageTalentCandidateList(TalentCandidateBo talentCandidateBo, PageQuery pageQuery);
+    TableDataInfo<SysTalentCandidate> selectPageTalentCandidateList(SysTalentCandidateBo sysTalentCandidateBo, PageQuery pageQuery);
 
-    List<TalentCandidateVo> selectTalentCandidateList(TalentCandidateBo talentCandidateBo);
+    List<SysTalentCandidate> selectTalentCandidateList(SysTalentCandidateBo sysTalentCandidateBo);
 
     /**
      * 新增人才库
      *
-     * @param talentCandidateBo 人才库
+     * @param sysTalentCandidateBo 人才库
      * @return 结果
      */
-    int insertSysTalentCandidate(TalentCandidateBo talentCandidateBo);
+    int insertSysTalentCandidate(SysTalentCandidateBo sysTalentCandidateBo);
 
     /**
      * 修改人才库
      *
-     * @param talentCandidateBo 人才库
+     * @param sysTalentCandidateBo 人才库
      * @return 结果
      */
-    int updateSysTalentCandidate(TalentCandidateBo talentCandidateBo);
+    int updateSysTalentCandidate(SysTalentCandidateBo sysTalentCandidateBo);
 
     /**
      * 批量删除人才库
